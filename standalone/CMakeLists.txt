@@ -42,7 +42,10 @@ add_executable(${PROJECT_NAME} ${sources} ${headers})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "AlienInvadersRetro")
 
 if (WIN32)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
+  winmm gdi32
+)
 endif (WIN32)
 
 if (UNIX)

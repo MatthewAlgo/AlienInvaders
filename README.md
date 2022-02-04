@@ -17,6 +17,6 @@ cmake --build build/standalone --config Release \
 (Or just run the build_release.bat script) \
 Install required dependencies if CMake throws errors \
 Wait for the build... \
-Copy everything from the "res" folder to "build/standalone" \
-Run "build/standalone/AlienInvadersRetro" \
+Copy everything from the "res" folder to "build/standalone/Release" \
+Run "build/standalone/Release/AlienInvadersRetro" \
 Have Fun!
