@@ -1,0 +1,25 @@
+{
+    "editor.tabSize": 2,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": true,
+    "zenMode.centerLayout": false,
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "liveServer.settings.CustomBrowser": "chrome",
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "editor.fontFamily": "'Cascadia Code PL', Consolas, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "window.zoomLevel": 2,
+    "editor.mouseWheelZoom": true,
+    "debug.console.fontSize": 18,
+    "editor.fontSize": 18,
+    "cmake.configureOnOpen": true
+}
