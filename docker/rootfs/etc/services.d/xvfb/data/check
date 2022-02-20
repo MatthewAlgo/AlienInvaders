@@ -1,6 +1,0 @@
-#!/usr/bin/with-contenv sh
-set -u # Treat unset variables as an error.
-
-xdpyinfo -display "$DISPLAY" > /dev/null 2>&1
-
-# vim: set ft=sh :

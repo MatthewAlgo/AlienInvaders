@@ -1,37 +1,26 @@
-FROM jlesage/baseimage-gui:debian-11
+FROM dorowu/ubuntu-desktop-lxde-vnc:bionic-lxqt
 
-RUN apt-get update
-RUN add-pkg xterm
-RUN add-pkg sudo
-RUN add-pkg git
+COPY install_deps.sh /home/sandbox/install_deps.sh
 
-# RUN apt-get install git
-RUN groupadd -g 1000 docker
-RUN useradd -d /home/docker -s /bin/bash -m docker -u 1000 -g 1000
-RUN echo "docker:docker" | chpasswd && adduser docker sudo
-
-# RUN git clone https://github.com/MatthewAlgo/AlienInvadersRetroBuild.git
-
-# Copy the start script.
-COPY startapp.sh /startapp.sh
-
-# Set the name of the application.
-ENV APP_NAME="Terminal"
-
-# USER docker
-# ENV HOME /home/docker
+# Add a docker user
+  # RUN groupadd -g 1000 docker
+  # RUN useradd -d /home/docker -s /bin/bash -m docker -u 1000 -g 1000
+  # RUN echo "docker:docker" | chpasswd && adduser docker sudo
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMMANDS ~~~~~~~~~
 
 
 # REMOVE ALL DOCKER CONTAINERS:
-# docker container stop $(docker container ls -aq) && docker system prune -af --volumes
+  # docker container stop $(docker container ls -aq) && docker system prune -af --volumes
 
 # REMOVE ALL DOCKER IMAGES:
-# docker rmi $(docker images -a -q)
+  # docker rmi $(docker images -a -q)
 
 # BUILD DOCKER IMAGE:
-# docker build -t docker-xterm .
+  # docker build -t docker-xterm .
 
 # RUN DOCKER IMAGE:
-# docker run --rm -p 5800:5800 -p 5900:5900 docker-xterm
+  # docker run --rm -p 5800:5800 -p 5900:5900 docker-xterm
+
+# Copy the start script.
+  # COPY startapp.sh /startapp.sh
