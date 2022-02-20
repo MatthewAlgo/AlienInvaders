@@ -1,2 +1,2 @@
 #!/bin/sh
-exec /usr/bin/firefox
+exec xterm
