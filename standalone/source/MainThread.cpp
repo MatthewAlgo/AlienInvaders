@@ -8,6 +8,10 @@
 #include <X11/Xlib.h>
 #endif
 
+// TODO: add pause button inside the game
+// TODO: add high score mechanics
+// TODO: implement design pattern: singleton
+
 // C++17 Application -> Used the filesystem header from standard library
 int main()
 {

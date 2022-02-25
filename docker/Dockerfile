@@ -21,6 +21,3 @@ COPY install_deps.sh /home/sandbox/install_deps.sh
 
 # RUN DOCKER IMAGE:
   # docker run --rm -p 5800:5800 -p 5900:5900 docker-xterm
-
-# Copy the start script.
-  # COPY startapp.sh /startapp.sh
