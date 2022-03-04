@@ -1,84 +1,63 @@
 #pragma once
 #ifndef ANIMATION_WINDOW_HEADER_H
-#define ANIMATION_WINDOW_HEADER_H
-#pragma region INCLUDES
-#include "StructuresAndOtherFunctions.h"
-#include "MainWindowHeader.h"
-#include "SpaceShip.h"
-#include "RandomParticlesGenerator.h"
-#include "EnemySpaceShip.h"
-#include "BoomBox.h"
+#  define ANIMATION_WINDOW_HEADER_H
+#  pragma region INCLUDES
+#  include <SFML/Audio.hpp>
+#  include <SFML/Graphics.hpp>
+#  include <SFML/System.hpp>
+#  include <SFML/Window.hpp>
+#  include <functional>
+#  include <thread>
 
-#include <thread>
-#include <functional>
+#  include "BoomBox.h"
+#  include "EnemySpaceShip.h"
+#  include "RandomParticlesGenerator.h"
+#  include "SpaceShip.h"
+#  include "StructuresAndOtherFunctions.h"
+#  include "VirtualWindow.h"
+#  pragma endregion INCLUDES
 
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include <SFML/System.hpp>
-#include <SFML/Audio.hpp>
-#pragma endregion INCLUDES
-
-#pragma region ANIMATION_WINDOW
+#  pragma region ANIMATION_WINDOW
 namespace MatthewsNamespace {
-	class AnimationWindow {
-	private:
-		// Same variables
-	protected:
-		struct ImageToBeDrawn {
-			sf::Sprite SPRITE;
-			sf::Texture TEXTURE;
-		};
+  class AnimationWindow : public virtual VirtualWindowClass {
+  private:
+    // AnimationWindow(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H){};
+    // // Private constructor AnimationWindow(Singleton& other) = delete;
+    // AnimationWindow& operator=(AnimationWindow& other) = delete;
 
-		sf::Int32 WWidth;
-		sf::Int32 WHeight;
-		const std::string WindowTitle;
+  protected:
+    sf::Font GlobalWindowFont;
+    sf::Text ScoreText, LivesText, GameOverText, PresskeyText,
+        LevelUpText;  // Text displayed in-app
 
-		std::unique_ptr<ImageToBeDrawn> BackGround;
+    MatthewsNamespace::SpaceShip SpaceShipMainPlayer;  // Spaceships
+    std::unique_ptr<ImageToBeDrawn> WindowTitleTextbox;
+    long long Player1Score = 0;  // Player Score
 
-		sf::Font GlobalWindowFont;
-		sf::Text ScoreText, LivesText, GameOverText, PresskeyText, LevelUpText;
+    std::vector<EnemySpaceShip*> VectorOfEnemies;
+    int enemy_spawn_clock = 0;
+    short Cnt1000 = 0;
+    short LevelUpConstant = 0;
 
-		MatthewsNamespace::SpaceShip SpaceShip1, SpaceShip2;
-		std::unique_ptr<ImageToBeDrawn> WindowTitleTextbox;
+  public:
+    static int ANIMATION_INSTANCES;
 
-		// Variables related to the main window
-		sf::RenderWindow* WindowPointer = NULL;
-		sf::Thread* MainWindowThread;
-		sf::VideoMode* MainWindowVideo;
-		long long Player1Score=0, Player2Score=0;
+    AnimationWindow(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H) {
+      SpaceShipMainPlayer.setMainWindowSize(
+          W, H);  // Sets the windows size as seen from the player's perspective
+    };
+    static AnimationWindow* const AnimWin;  // Singleton instance
 
-		MatthewsNamespace::RandomParticlesGenerator* ParticleGenerator;
-		std::vector<EnemySpaceShip*> VectorOfEnemies; int enemy_spawn_clock = 0; short Cnt1000 = 0;
-		short LevelUpConstant = 0;
+    ~AnimationWindow() = default;  // Auto deallocate smart pointers
 
-	public:
-		static int ANIMATION_INSTANCES;
-		AnimationWindow(const std::string TITLE, int W, int H) : WindowTitle(TITLE), MainWindowVideo(new sf::VideoMode(W, H)),
-			WWidth(static_cast<int>(W)), WHeight(static_cast<int>(H)), ParticleGenerator(new MatthewsNamespace::RandomParticlesGenerator()) {
-			// MainWindowThread = new sf::Thread(std::bind(&MainWindowClass::MainWindowThreadExecution,this, *TripleHolder));
-			SpaceShip1.setMainWindowSize(WWidth, WHeight);
-
-			MainWindowThread = new sf::Thread([&]() -> void {
-				// Create window and set active
-				AnimationWindow::WindowPointer = new sf::RenderWindow(*MainWindowVideo, WindowTitle, sf::Style::Titlebar | sf::Style::Close); // Create the window
-				WindowPointer->setActive(false);
-
-				std::unique_ptr<TripleItemHolder<sf::RenderWindow, sf::Thread, AnimationWindow>> TripleHolder = std::make_unique<TripleItemHolder
-					<sf::RenderWindow, sf::Thread, AnimationWindow>>(WindowPointer, MainWindowThread, this);
-
-				AnimationWindow::MainWindowThreadExecution(*TripleHolder);
-				});
-			// Create and launch the window thread
-			MainWindowThread->launch();
-		};
-
-		~AnimationWindow() = default; // Auto deallocate smart pointers 
-
-		void MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, AnimationWindow>&ITEM_HOLDER);
-		void DrawInsideMainWindow(sf::RenderWindow * WINDOW, sf::Thread * WINTHREAD, AnimationWindow* C);
-		void RenderTextures(DoubleItemHolder<sf::RenderWindow, AnimationWindow> ITEM_HOLDER);
-	};
-}
-#pragma endregion ANIMATION_WINDOW
+    void MainWindowThreadExecution(
+        TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) override;
+    void DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD,
+                              VirtualWindowClass* C) override;
+    void RenderTextures(
+        DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) override;
+  };
+}  // namespace MatthewsNamespace
+#  pragma endregion ANIMATION_WINDOW
 
 #endif

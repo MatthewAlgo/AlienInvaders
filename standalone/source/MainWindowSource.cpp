@@ -1,24 +1,21 @@
 #include "alieninvadersretro/MainWindowHeader.h"
 #include "alieninvadersretro/AnimationWindow.h"
 #include "alieninvadersretro/BoomBox.h"
+#include "alieninvadersretro/VirtualWindow.h"
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
+#include <iostream>
 
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
-void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, MainWindowClass>& ITEM_HOLDER) {
+void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
 	sf::WindowHandle handle = ITEM_HOLDER.getA()->getSystemHandle(); // Use the handle with OS specific functions
 	// Main Window Settings
 	ITEM_HOLDER.getA()->setActive(true);
 	ITEM_HOLDER.getA()->setVerticalSyncEnabled(true);
 	ITEM_HOLDER.getA()->setFramerateLimit(60);
 
-	//////// Create a separate thread to render the textures
-	std::unique_ptr<sf::Thread> ThreadRenderer = std::make_unique<sf::Thread>([&]()->void {
-			// TODO: Render Textures Asynchronously
-		}
-	);
-	std::unique_ptr<DoubleItemHolder<sf::RenderWindow, MainWindowClass>> CurrentHolder = std::make_unique<DoubleItemHolder<sf::RenderWindow, MainWindowClass>>(WindowPointer, this);
+	std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer, this);
 	RenderTextures(*CurrentHolder.get());
 	//////// Temporary - work in progress
 
@@ -103,7 +100,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), ITEM_HOLDER.getC());
 	}
 }
-void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::MainWindowClass* C) {
+void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::VirtualWindowClass* C) {
 	WINDOW->clear(sf::Color::Red);
 	WINDOW->draw(BackGround->SPRITE);
 
@@ -123,7 +120,7 @@ void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* 
 	WINDOW->draw(GreetingText);
 	WINDOW->display();
 }
-void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, MainWindowClass> ITEM_HOLDER) {
+void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
 	// Inside a separate thread -> Background
 	BackGround = std::make_unique<ImageToBeDrawn>();
 	BackGround->TEXTURE.loadFromFile("BigSurWallpaper.png");
