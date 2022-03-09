@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD 17)
 
 project(StandaloneProject LANGUAGES CXX)
 
@@ -11,18 +11,26 @@ include(../cmake/tools.cmake)
 
 include(../cmake/CPM.cmake)
 
-CPMAddPackage(
-  GITHUB_REPOSITORY jarro2783/cxxopts
-  VERSION 2.2.1
-  OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL YES"
+# Install GLFW3
+CPMFindPackage(
+    NAME glfw3
+    # GITHUB_REPOSITORY glfw/glfw
+    # GIT_TAG 3.3.2
+    URL https://github.com/glfw/glfw/releases/download/3.3.2/glfw-3.3.2.zip
+    URL_HASH SHA256=08a33a512f29d7dbf78eab39bd7858576adcc95228c9efe8e4bc5f0f3261efc7
+    VERSION 3.2
+    OPTIONS
+        "ENKITS_BUILD_EXAMPLES OFF"
+        "GLFW_BUILD_EXAMPLES OFF"
+        "GLFW_BUILD_TESTS ON"
+        "GLFW_BUILD_DOCS ON"
+        "GLFW_BUILD_INSTALL ON"
 )
+CPMAddPackage("https://github.com/g-truc/glm.git#0.9.9.8")
 
-CPMAddPackage(
-  NAME fmt
-  GIT_TAG 7.1.3
-  GITHUB_REPOSITORY fmtlib/fmt
-  OPTIONS "FMT_INSTALL YES" # create an installable target
-)
+# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
+find_package(OpenGL REQUIRED)
+
 
 CPMAddPackage(
   NAME sfml
@@ -34,8 +42,8 @@ CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create standalone executable ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h")
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp)
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
@@ -50,7 +58,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graph
 endif (WIN32)
 
 if (UNIX)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw)
 endif (UNIX)
 
 target_include_directories(
