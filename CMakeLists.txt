@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 17)
+# set(CMAKE_CXX_STANDARD 17)
 
 # ---- Project ----
 
@@ -24,28 +24,43 @@ endif()
 
 include(cmake/CPM.cmake)
 
+
+# GLAD
+CPMAddPackage(
+  NAME glad
+  GITHUB_REPOSITORY Dav1dde/glad
+  VERSION 0.1.33
+)
+
+# GLM
+CPMAddPackage(
+  NAME glm
+  GITHUB_REPOSITORY g-truc/glm
+  GIT_TAG 0.9.9.7
+)
+
+# GLFW
+CPMAddPackage(
+  NAME glfw
+  GITHUB_REPOSITORY glfw/glfw
+  GIT_TAG 3.3.2
+  OPTIONS
+	"GLFW_BUILD_TESTS Off"
+	"GLFW_BUILD_EXAMPLES Off"
+	"GLFW_BUILD_DOCS Off"
+    "GLFW_INSTALL Off"
+    "GLFW_USE_HYBRID_HPG On"
+)
+
+# Source file grouping of visual studio and xcode
+CPMAddPackage(
+  NAME GroupSourcesByFolder.cmake
+  GITHUB_REPOSITORY TheLartians/GroupSourcesByFolder.cmake
+  VERSION 1.0
+)
+
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
-
-CPMAddPackage(
-  NAME fmt
-  GIT_TAG 7.1.3
-  GITHUB_REPOSITORY fmtlib/fmt
-  OPTIONS "FMT_INSTALL YES" # create an installable target
-)
-
-CPMAddPackage(
-  NAME sfml
-  GITHUB_REPOSITORY SFML/SFML
-  GIT_TAG 2.5.x
-)
-
-CPMAddPackage(
-  GITHUB_REPOSITORY jarro2783/cxxopts
-  VERSION 2.2.1
-  OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL YES"
-)
-
 
 # ---- Add source files ----
 
@@ -70,7 +85,7 @@ if (WIN32)
 
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm gdi32
+  winmm gdi32 ImGui-SFML::ImGui-SFML
 )
 endif (WIN32)
 

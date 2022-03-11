@@ -11,22 +11,40 @@ include(../cmake/tools.cmake)
 
 include(../cmake/CPM.cmake)
 
-# Install GLFW3
-CPMFindPackage(
-    NAME glfw3
-    # GITHUB_REPOSITORY glfw/glfw
-    # GIT_TAG 3.3.2
-    URL https://github.com/glfw/glfw/releases/download/3.3.2/glfw-3.3.2.zip
-    URL_HASH SHA256=08a33a512f29d7dbf78eab39bd7858576adcc95228c9efe8e4bc5f0f3261efc7
-    VERSION 3.2
-    OPTIONS
-        "ENKITS_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_TESTS ON"
-        "GLFW_BUILD_DOCS ON"
-        "GLFW_BUILD_INSTALL ON"
+# GLAD
+CPMAddPackage(
+  NAME glad
+  GITHUB_REPOSITORY Dav1dde/glad
+  VERSION 0.1.33
 )
-CPMAddPackage("https://github.com/g-truc/glm.git#0.9.9.8")
+
+# GLM
+CPMAddPackage(
+  NAME glm
+  GITHUB_REPOSITORY g-truc/glm
+  GIT_TAG 0.9.9.7
+)
+
+# GLFW
+CPMAddPackage(
+  NAME glfw
+  GITHUB_REPOSITORY glfw/glfw
+  GIT_TAG 3.3.2
+  OPTIONS
+	"GLFW_BUILD_TESTS Off"
+	"GLFW_BUILD_EXAMPLES Off"
+	"GLFW_BUILD_DOCS Off"
+    "GLFW_INSTALL Off"
+    "GLFW_USE_HYBRID_HPG On"
+)
+
+
+# Source file grouping of visual studio and xcode
+CPMAddPackage(
+  NAME GroupSourcesByFolder.cmake
+  GITHUB_REPOSITORY TheLartians/GroupSourcesByFolder.cmake
+  VERSION 1.0
+)
 
 # Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
 find_package(OpenGL REQUIRED)
@@ -37,6 +55,7 @@ CPMAddPackage(
   GITHUB_REPOSITORY SFML/SFML
   GIT_TAG 2.5.x
 )
+
 
 CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
@@ -65,3 +84,5 @@ target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../include>
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
+
+GroupSourcesByFolder(${PROJECT_NAME}) # Groups sources by folder

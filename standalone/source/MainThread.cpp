@@ -20,7 +20,7 @@ int main() {
   // -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lX11 -o AlienInvadersRetro.elf
 
 #ifdef __linux__
-  XInitThreads();
+  // XInitThreads(); // Calls the Thread Initialization for Linux
 #endif
 
   /// BETA area
