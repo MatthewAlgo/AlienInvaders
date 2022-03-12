@@ -1,3 +1,4 @@
+
 # Batch to build app
 
 cmake -S standalone -B build/standalone

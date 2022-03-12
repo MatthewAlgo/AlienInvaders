@@ -26,16 +26,19 @@ CPMAddPackage(
 )
 
 # GLFW
-CPMAddPackage(
-  NAME glfw
-  GITHUB_REPOSITORY glfw/glfw
-  GIT_TAG 3.3.2
-  OPTIONS
-	"GLFW_BUILD_TESTS Off"
-	"GLFW_BUILD_EXAMPLES Off"
-	"GLFW_BUILD_DOCS Off"
-    "GLFW_INSTALL Off"
-    "GLFW_USE_HYBRID_HPG On"
+CPMFindPackage(
+    NAME glfw3
+    # GITHUB_REPOSITORY glfw/glfw
+    # GIT_TAG 3.3.2
+    URL https://github.com/glfw/glfw/releases/download/3.3.2/glfw-3.3.2.zip
+    URL_HASH SHA256=08a33a512f29d7dbf78eab39bd7858576adcc95228c9efe8e4bc5f0f3261efc7
+    VERSION 3.2
+    OPTIONS
+        "ENKITS_BUILD_EXAMPLES OFF"
+        "GLFW_BUILD_EXAMPLES OFF"
+        "GLFW_BUILD_TESTS ON"
+        "GLFW_BUILD_DOCS ON"
+        "GLFW_BUILD_INSTALL ON"
 )
 
 
@@ -61,8 +64,8 @@ CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create standalone executable ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp)
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h")
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui_sfml/*.cpp)
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui_sfml/*.h")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
