@@ -11,6 +11,21 @@ include(../cmake/tools.cmake)
 
 include(../cmake/CPM.cmake)
 
+# CXXOPTS
+CPMAddPackage(
+  GITHUB_REPOSITORY jarro2783/cxxopts
+  VERSION 2.2.1
+  OPTIONS "CXXOPTS_BUILD_EXAMPLES NO" "CXXOPTS_BUILD_TESTS NO" "CXXOPTS_ENABLE_INSTALL YES"
+)
+
+# FMT
+CPMAddPackage(
+  NAME fmt
+  GIT_TAG 7.1.3
+  GITHUB_REPOSITORY fmtlib/fmt
+  OPTIONS "FMT_INSTALL YES" # Create an installable target
+)
+
 # GLAD
 CPMAddPackage(
   NAME glad

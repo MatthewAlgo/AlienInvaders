@@ -41,10 +41,10 @@ namespace MatthewsNamespace {
     std::deque<SpaceShipBullet*> BulletDeque;  // Each entity has its own stack of bullets
 
     // FUNCTIONS - EACH ENTITY CAN MOVE
-    inline virtual void MoveUp();
-    inline virtual void MoveDown();
-    inline virtual void MoveLeft();
-    inline virtual void MoveRight();
+    virtual void MoveUp();
+    virtual void MoveDown();
+    virtual void MoveLeft();
+    virtual void MoveRight();
 
 
     // Setters

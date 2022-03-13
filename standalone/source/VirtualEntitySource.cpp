@@ -16,19 +16,19 @@ namespace MatthewsNamespace {
     ExplosionSprite.setScale(0.1, 0.1);
   }
 
-  inline void VirtualEntity::MoveUp() {
+  void VirtualEntity::MoveUp() {
     if (POS.y - 20 > 0 && POS.y - 20 < WinSize.y) POS.y -= 30;
     SpriteOfEntity.setPosition(POS.x, POS.y);
   }
-  inline void VirtualEntity::MoveDown() {
+  void VirtualEntity::MoveDown() {
     if (POS.y + 20 > 0 && POS.y + 20 < WinSize.y) POS.y += 30;
     SpriteOfEntity.setPosition(POS.x, POS.y);
   }
-  inline void VirtualEntity::MoveLeft() {
+  void VirtualEntity::MoveLeft() {
     if (POS.x - 20 > -60 && POS.x - 20 < WinSize.x) POS.x -= 30;
     SpriteOfEntity.setPosition(POS.x, POS.y);
   }
-  inline void VirtualEntity::MoveRight() {
+  void VirtualEntity::MoveRight() {
     if (POS.x + 20 > -60 && POS.x + 20 < WinSize.x) POS.x += 30;
     SpriteOfEntity.setPosition(POS.x, POS.y);
   }

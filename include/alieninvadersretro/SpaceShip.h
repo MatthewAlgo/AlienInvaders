@@ -19,10 +19,7 @@ namespace MatthewsNamespace {
     // Each spaceship has a queue of bullets
     std::deque<SpaceShipBullet*> BulletDeque;
     
-    inline void MoveUp() override;
-    inline void MoveDown() override;
-    inline void MoveLeft() override;
-    inline void MoveRight() override;
+    // The spaceship moves according to the VirtualEntity
 
     // Constructors
     SpaceShip(sf::Vector2f WindowSize, sf::Texture Texture) {
