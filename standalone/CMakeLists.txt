@@ -30,9 +30,8 @@ CPMFindPackage(
     NAME glfw3
     # GITHUB_REPOSITORY glfw/glfw
     # GIT_TAG 3.3.2
-    URL https://github.com/glfw/glfw/releases/download/3.3.2/glfw-3.3.2.zip
-    URL_HASH SHA256=08a33a512f29d7dbf78eab39bd7858576adcc95228c9efe8e4bc5f0f3261efc7
-    VERSION 3.2
+    URL https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip
+    VERSION 3.3
     OPTIONS
         "ENKITS_BUILD_EXAMPLES OFF"
         "GLFW_BUILD_EXAMPLES OFF"
@@ -75,12 +74,12 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Al
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm gdi32
+  winmm gdi32 glfw glad glm
 )
 endif (WIN32)
 
 if (UNIX)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw glad glm)
 endif (UNIX)
 
 target_include_directories(
