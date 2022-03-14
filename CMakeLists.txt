@@ -74,9 +74,14 @@ target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graph
 )
 endif (WIN32)
 
+if(APPLE)
+    find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+    target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+endif(APPLE)
 
 if (UNIX)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+  find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+  target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (UNIX)
 
 
