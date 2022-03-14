@@ -1,11 +1,10 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 17)
 
 # ---- Project ----
 
 # Note: update this to your new project's name and version
 project(
-  AlienInvadersRetro
+  AsteroidInvasion
   VERSION 1.0
   LANGUAGES CXX
 )
@@ -37,7 +36,7 @@ CPMAddPackage(
 CPMAddPackage(
   NAME sfml
   GITHUB_REPOSITORY SFML/SFML
-  GIT_TAG 2.5.x
+  GIT_TAG master
 )
 
 CPMAddPackage(

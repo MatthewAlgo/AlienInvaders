@@ -1,12 +1,5 @@
 #!/bin/sh
-
-# Backup the current repository
-mkdir ~/apt.back
-cd ~/apt.back
-sudo cp /etc/apt/sources.list ../apt.back/
-sudo cp /etc/apt/sources.list.d/*list ../apt.back/
-sudo apt-get update
-cd -
+## If the script does not work, try running after installing dos2unix: dos2unix install_deps.sh
 
 # Add SFML
 sudo apt-get update
@@ -47,7 +40,7 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 800 --slave /usr/bin/g++ g++ /usr/bin/g++-11
 
 # Clone the game from Github 
-git clone https://github.com/MatthewAlgo/AlienInvadersRetroBuild.git
+git clone https://github.com/MatthewAlgo/AlienInvadersRetroBuild.git -b AsteroidInvasion
 # Build and run
 cd AlienInvadersRetroBuild && ../cmake-3.23.0-rc1-linux-x86_64/bin/cmake -S standalone -B build/standalone && \
   ../cmake-3.23.0-rc1-linux-x86_64/bin/cmake --build build/standalone --config Release

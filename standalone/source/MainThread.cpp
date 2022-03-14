@@ -23,13 +23,8 @@ int main() {
   XInitThreads();
 #endif
 
-  /// BETA area
-  ///	MatthewsNamespace::PlayerStats* Window = new MatthewsNamespace::PlayerStats("Test", 1000,
-  ///500);
-  ///
-
   MatthewsNamespace::MainWindowClass* MyMainWindow;
-  MyMainWindow = new MatthewsNamespace::MainWindowClass("AlienInvasion - Main Menu", 1000, 500);
+  MyMainWindow = new MatthewsNamespace::MainWindowClass("AsteroidInvasion - Main Menu", 1000, 500);
   MatthewsNamespace::BoomBox::INIT_BOOMBOX_MAIN();
 
   std::cin.get();

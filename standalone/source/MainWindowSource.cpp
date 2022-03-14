@@ -46,7 +46,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 							BoomBox::getMainTheme()->pause();
 						}
 						MatthewsNamespace::AnimationWindow* MyMainWindow
-							= new MatthewsNamespace::AnimationWindow("AlienInvasionRetro", 1000, 700);
+							= new MatthewsNamespace::AnimationWindow("AsteroidInvasion", 1000, 700);
 						BoomBox::WindowSoundEffect();
 					}
 					else {
@@ -143,7 +143,7 @@ void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::Ren
 	// Render Font for text
 	GlobalWindowFont.loadFromFile("Fonts/Emulogic.ttf");
 	GreetingText.setFont(GlobalWindowFont);
-	GreetingText.setString("Alien Invasion - Retro");
+	GreetingText.setString("AsteroidInvasion - Retro");
 	GreetingText.setCharacterSize(24);
 	GreetingText.setFillColor(sf::Color::Blue);
 	GreetingText.setStyle(sf::Text::Bold);

@@ -1,20 +1,20 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 17)
 
-project(AlienInvadersRetroDocs)
+project(AsteroidInvasionDocs)
 
 # ---- Dependencies ----
 
 include(../cmake/CPM.cmake)
 
 CPMAddPackage("gh:mosra/m.css#42d4a9a48f31f5df6e246c948403b54b50574a2a")
-CPMAddPackage(NAME AlienInvadersRetroDocs SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage(NAME AsteroidInvasionDocs SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Doxygen variables ----
 
 # set Doxyfile variables
-set(DOXYGEN_PROJECT_NAME AlienInvadersRetroDocs)
-set(DOXYGEN_PROJECT_VERSION ${AlienInvadersRetroDocs_VERSION})
+set(DOXYGEN_PROJECT_NAME AsteroidInvasionDocs)
+set(DOXYGEN_PROJECT_VERSION ${AsteroidInvasionDocs_VERSION})
 set(DOXYGEN_PROJECT_ROOT "${CMAKE_CURRENT_LIST_DIR}/..")
 set(DOXYGEN_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/doxygen")
 

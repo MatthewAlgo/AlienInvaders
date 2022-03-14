@@ -16,6 +16,9 @@ COPY install_deps.sh /home/sandbox/install_deps.sh
 # REMOVE ALL DOCKER IMAGES:
   # docker rmi $(docker images -a -q)
 
+
+
+############ Other
 # BUILD DOCKER IMAGE:
   # docker build -t docker-xterm .
 

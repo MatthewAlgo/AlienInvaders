@@ -19,5 +19,6 @@ services:
       - USER=sandbox
       - PASSWORD=white!=black
 
-# RUN SCRIPT:
+# RUN SCRIPT (and Docker instance with everything it needs, including the X11 server):
 # docker-compose up -d
+# Then VNC into 127.0.0.1:5900

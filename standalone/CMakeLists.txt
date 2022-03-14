@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 17)
 
 project(StandaloneProject LANGUAGES CXX)
 
@@ -30,7 +29,7 @@ CPMAddPackage(
   GIT_TAG 2.5.x
 )
 
-CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage(NAME AsteroidInvasion SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
 # ---- Create standalone executable ----
 
@@ -40,7 +39,7 @@ file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../incl
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "AlienInvadersRetro")
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "AsteroidInvasion")
 
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
