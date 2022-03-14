@@ -22,3 +22,12 @@ services:
 # RUN SCRIPT (and Docker instance with everything it needs, including the X11 server):
 # docker-compose up -d
 # Then VNC into 127.0.0.1:5900
+
+# Remove all containers and images
+# REMOVE ALL DOCKER CONTAINERS:
+  # docker container stop $(docker container ls -aq) && docker system prune -af --volumes
+
+# REMOVE ALL DOCKER IMAGES:
+  # docker rmi $(docker images -a -q)
+
+# TOTAL SPACE OF DOCKER CONTAINER ON DISK: 978Mb, with all dependencies

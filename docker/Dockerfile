@@ -9,15 +9,6 @@ COPY install_deps.sh /home/sandbox/install_deps.sh
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ COMMANDS ~~~~~~~~~
 
-
-# REMOVE ALL DOCKER CONTAINERS:
-  # docker container stop $(docker container ls -aq) && docker system prune -af --volumes
-
-# REMOVE ALL DOCKER IMAGES:
-  # docker rmi $(docker images -a -q)
-
-
-
 ############ Other
 # BUILD DOCKER IMAGE:
   # docker build -t docker-xterm .
