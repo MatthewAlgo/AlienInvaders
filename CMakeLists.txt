@@ -66,20 +66,19 @@ target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>
 
 # Link dependencies
 if (WIN32)
-
-find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
+  # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+    target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
   winmm gdi32
 )
 endif (WIN32)
 
 if(APPLE)
-    find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+  # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
     target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif(APPLE)
 
 if (UNIX)
-  find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+  # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
   target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (UNIX)
 

@@ -42,20 +42,20 @@ add_executable(${PROJECT_NAME} ${sources} ${headers})
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "AsteroidInvasion")
 
 if (WIN32)
-find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
+  # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+    target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
   winmm gdi32
 )
 endif (WIN32)
 
 if(APPLE)
-    find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+    # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
     target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif(APPLE)
 
 if (UNIX)
-  find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-  target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+    # find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
+    target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (UNIX)
 
 target_include_directories(
