@@ -102,24 +102,7 @@ namespace MatthewsNamespace {
         this->BulletDeque.erase(this->BulletDeque.begin() + i);
       }
     }
-  }
-
-  inline void SpaceShip::MoveUp() {
-    if (POS.y - 20 > 0 && POS.y - 20 < WinSize.y) POS.y -= 30;
-    SpriteOfEntity.setPosition(POS.x, POS.y);
-  }
-  inline void SpaceShip::MoveDown() {
-    if (POS.y + 20 > 0 && POS.y + 20 < WinSize.y) POS.y += 30;
-    SpriteOfEntity.setPosition(POS.x, POS.y);
-  }
-  inline void SpaceShip::MoveLeft() {
-    if (POS.x - 20 > -60 && POS.x - 20 < WinSize.x) POS.x -= 30;
-    SpriteOfEntity.setPosition(POS.x, POS.y);
-  }
-  inline void SpaceShip::MoveRight() {
-    if (POS.x + 20 > -60 && POS.x + 20 < WinSize.x) POS.x += 30;
-    SpriteOfEntity.setPosition(POS.x, POS.y);
-  }
+  } 
 
   // Functions initially placed inside the header file
   void SpaceShip::setTexture(sf::Texture& texture) { TextureOfEntity = texture; }

@@ -169,7 +169,7 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
       EnemySpaceShip Espace;
       VectorOfEnemies.push_back(new EnemySpaceShip(Espace));
       VectorOfEnemies.back()->setMainWindowSize(WINDOW->getSize().x, WINDOW->getSize().y);
-      VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "EnemySpaceShip.png");
+      VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "Asteroid.png"); // EnemySpaceShip.png
       enemy_spawn_clock = MatthewsNamespace::RandomParticlesGenerator::Mersenne_Twister_Generator(
           60 + LevelUpConstant, 70 + LevelUpConstant);
     }

@@ -19,10 +19,12 @@ namespace MatthewsNamespace {
     // Each spaceship has a queue of bullets
     std::deque<SpaceShipBullet*> BulletDeque;
     
+    /*
     inline void MoveUp() override;
     inline void MoveDown() override;
     inline void MoveLeft() override;
     inline void MoveRight() override;
+    */ // We are using the pre-defined versions of those functions (that are inherited)
 
     // Constructors
     SpaceShip(sf::Vector2f WindowSize, sf::Texture Texture) {
