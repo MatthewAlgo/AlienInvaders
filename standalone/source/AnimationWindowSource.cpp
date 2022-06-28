@@ -1,5 +1,9 @@
 #include "alieninvadersretro/AnimationWindow.h"  // Grabs all related includes
 
+// INCLUDE IMGUI
+#include "imgui/imgui.h"
+#include "imgui-sfml/imgui-SFML.h"
+
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
 int MatthewsNamespace::EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;
 int MatthewsNamespace::AnimationWindow::ANIMATION_INSTANCES = 0;
@@ -28,6 +32,10 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   if (!(BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing)) {
     MatthewsNamespace::BoomBox::RandomSongGenerator();
   }
+
+  // INIT IMGUI
+  ImGui::SFML::Init(*ITEM_HOLDER.getA());
+  sf::Clock deltaClock;
 
   BoomBox::WelcomeEffect();
   // Display main Window
@@ -116,6 +124,9 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
         if (Event->text.unicode == 'w') {
         }  // Keyboard input control here
       }
+
+      // INIT SFML WINDOW
+      ImGui::SFML::ProcessEvent(*ITEM_HOLDER.getA(), *Event);
     }
     // Check for continuous key presses
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -139,6 +150,13 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
       MatthewsNamespace::BoomBox::RandomSongGenerator();
     }
 
+    // DISPLAY IMGUI
+    ImGui::SFML::Update(*ITEM_HOLDER.getA(), deltaClock.restart());
+    ImGui::ShowDemoWindow();
+    ImGui::Begin("Hello, world!");
+    ImGui::Button("Look at this pretty button");
+    ImGui::End();
+
     std::free(Event);
     MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
                                                              ITEM_HOLDER.getC());
@@ -151,6 +169,9 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
 
     WINDOW->clear(sf::Color::Red);
     WINDOW->draw(BackGround->SPRITE);
+
+    // RENDER IMGUI
+    ImGui::SFML::Render(*WINDOW);
 
     // Draw the current player score
     ScoreText.setString("Player Score: " + std::to_string(Player1Score));

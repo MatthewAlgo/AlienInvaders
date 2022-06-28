@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-# set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
 # ---- Project ----
 
@@ -55,20 +55,21 @@ CPMAddPackage(
   GITHUB_REPOSITORY g-truc/glm
   GIT_TAG 0.9.9.7
 )
+
 # GLFW
-CPMFindPackage(
-    NAME glfw3
-    # GITHUB_REPOSITORY glfw/glfw
-    # GIT_TAG 3.3.2
-    URL https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip
-    VERSION 3.3
-    OPTIONS
-        "ENKITS_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_TESTS ON"
-        "GLFW_BUILD_DOCS ON"
-        "GLFW_BUILD_INSTALL ON"
-)
+# CPMFindPackage(
+#     NAME glfw3
+#     # GITHUB_REPOSITORY glfw/glfw
+#     # GIT_TAG 3.3.2
+#     URL https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip
+#     VERSION 3.3
+#     OPTIONS
+#         "ENKITS_BUILD_EXAMPLES OFF"
+#         "GLFW_BUILD_EXAMPLES OFF"
+#         "GLFW_BUILD_TESTS ON"
+#         "GLFW_BUILD_DOCS ON"
+#         "GLFW_BUILD_INSTALL ON"
+# )
 
 # Source file grouping of visual studio and xcode
 CPMAddPackage(
@@ -76,6 +77,21 @@ CPMAddPackage(
   GITHUB_REPOSITORY TheLartians/GroupSourcesByFolder.cmake
   VERSION 1.0
 )
+
+# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
+find_package(OpenGL REQUIRED)
+
+
+CPMAddPackage(
+  NAME sfml
+  GITHUB_REPOSITORY SFML/SFML
+  GIT_TAG 2.5.x
+)
+set_target_properties(sfml-system PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-network PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-window PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 
 
 # ---- Add source files ----
@@ -88,32 +104,33 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # ---- Create library ----
 
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
-# target: add_library(${PROJECT_NAME} INTERFACE)
-add_library(${PROJECT_NAME} ${headers} ${sources})
+# target: add_library(alieninvaderslibrary INTERFACE)
+add_library(alieninvaderslibrary ${headers} ${sources})
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
+set_target_properties(alieninvaderslibrary PROPERTIES CXX_STANDARD 17)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
-target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
+target_compile_options(alieninvaderslibrary PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
 
 # Link dependencies
 if (WIN32)
-
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm gdi32 glfw glad glm
-)
+target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (WIN32)
 
 
-if (UNIX)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw glad glm) # ImGui-SFML::ImGui-SFML
-endif (UNIX)
+if (UNIX AND NOT APPLE)
+target_link_libraries(alieninvaderslibrary PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+endif (UNIX AND NOT APPLE)
+
+if (APPLE)
+target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+endif (APPLE)
 
 
 target_include_directories(
-  ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-                         $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
+  alieninvaderslibrary PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
+                         $<INSTALL_INTERFACE:include/alieninvaderslibrary-${PROJECT_VERSION}>
 )
 
 # ---- Create an installable target ----
@@ -121,16 +138,16 @@ target_include_directories(
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths
-string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
+string(TOLOWER alieninvaderslibrary/version.h VERSION_HEADER_LOCATION)
 
 packageProject(
-  NAME ${PROJECT_NAME}
+  NAME alieninvaderslibrary
   VERSION ${PROJECT_VERSION}
-  NAMESPACE ${PROJECT_NAME}
+  NAMESPACE alieninvaderslibrary
   BINARY_DIR ${PROJECT_BINARY_DIR}
   INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
-  INCLUDE_DESTINATION include/${PROJECT_NAME}-${PROJECT_VERSION}
+  INCLUDE_DESTINATION include/alieninvaderslibrary-${PROJECT_VERSION}
   VERSION_HEADER "${VERSION_HEADER_LOCATION}"
   COMPATIBILITY SameMajorVersion
-  DEPENDENCIES "sfml 3.0.0"
+  DEPENDENCIES "sfml 2.5.x"
 )

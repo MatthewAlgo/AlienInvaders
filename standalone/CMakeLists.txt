@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
-# set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
 project(StandaloneProject LANGUAGES CXX)
 
@@ -41,19 +41,19 @@ CPMAddPackage(
 )
 
 # GLFW
-CPMFindPackage(
-    NAME glfw3
-    # GITHUB_REPOSITORY glfw/glfw
-    # GIT_TAG 3.3.2
-    URL https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip
-    VERSION 3.3
-    OPTIONS
-        "ENKITS_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_EXAMPLES OFF"
-        "GLFW_BUILD_TESTS ON"
-        "GLFW_BUILD_DOCS ON"
-        "GLFW_BUILD_INSTALL ON"
-)
+# CPMFindPackage(
+#     NAME glfw3
+#     # GITHUB_REPOSITORY glfw/glfw
+#     # GIT_TAG 3.3.2
+#     URL https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip
+#     VERSION 3.3
+#     OPTIONS
+#         "ENKITS_BUILD_EXAMPLES OFF"
+#         "GLFW_BUILD_EXAMPLES OFF"
+#         "GLFW_BUILD_TESTS ON"
+#         "GLFW_BUILD_DOCS ON"
+#         "GLFW_BUILD_INSTALL ON"
+# )
 
 
 # Source file grouping of visual studio and xcode
@@ -72,6 +72,12 @@ CPMAddPackage(
   GITHUB_REPOSITORY SFML/SFML
   GIT_TAG 2.5.x
 )
+set_target_properties(sfml-system PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-network PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-window PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
+
 
 
 CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
@@ -89,13 +95,21 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "Al
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm gdi32 glfw glad glm
+  winmm gdi32 glad glm alieninvaderslibrary opengl
 )
 endif (WIN32)
 
-if (UNIX)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw glad glm)
-endif (UNIX)
+if (UNIX AND NOT APPLE)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw glad glm alieninvaderslibrary
+  opengl
+)
+endif (UNIX AND NOT APPLE)
+
+if (APPLE)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network glm alieninvaderslibrary
+  opengl
+)
+endif (APPLE)
 
 target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../include>
