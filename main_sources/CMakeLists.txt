@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 set(CMAKE_CXX_STANDARD 17)
 
-project(StandaloneProject LANGUAGES CXX)
+project(MainProject LANGUAGES CXX)
 
 # --- Import tools ----
 
@@ -26,19 +26,19 @@ CPMAddPackage(
   OPTIONS "FMT_INSTALL YES" # Create an installable target
 )
 
-# GLAD
-CPMAddPackage(
-  NAME glad
-  GITHUB_REPOSITORY Dav1dde/glad
-  VERSION 0.1.33
-)
+# # GLAD
+# CPMAddPackage(
+#   NAME glad
+#   GITHUB_REPOSITORY Dav1dde/glad
+#   VERSION 0.1.33
+# )
 
-# GLM
-CPMAddPackage(
-  NAME glm
-  GITHUB_REPOSITORY g-truc/glm
-  GIT_TAG 0.9.9.7
-)
+# # GLM
+# CPMAddPackage(
+#   NAME glm
+#   GITHUB_REPOSITORY g-truc/glm
+#   GIT_TAG 0.9.9.7
+# )
 
 # GLFW
 # CPMFindPackage(
@@ -63,10 +63,6 @@ CPMAddPackage(
   VERSION 1.0
 )
 
-# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
-find_package(OpenGL REQUIRED)
-
-
 CPMAddPackage(
   NAME sfml
   GITHUB_REPOSITORY SFML/SFML
@@ -78,25 +74,41 @@ set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQU
 set_target_properties(sfml-window PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 
+# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
+find_package(OpenGL REQUIRED)
+find_package(SFML REQUIRED)
+
+# CPMAddPackage(
+#   NAME imgui
+#   GITHUB_REPOSITORY Pesc0/imgui-cmake
+#   GIT_TAG master
+# )
+
+# CPMAddPackage(
+#   NAME imgui-sfml
+#   GITHUB_REPOSITORY eliasdaler/imgui-sfml
+#   OPTION "IMGUI_SFML_BUILD_EXAMPLES OFF" "IMGUI_SFML_BUILD_TESTS OFF" "SFML_DIR ${SFML_DIR}"
+#   GIT_TAG master
+# )
 
 
-CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
+CPMAddPackage(NAME MainLibraries SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/../main_libraries)
 
 # ---- Create standalone executable ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui_sfml/*.cpp)
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui_sfml/*.h")
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h")
 
 add_executable(${PROJECT_NAME} ${sources} ${headers})
 
 
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "AlienInvadersRetro")
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "alieninvadersretro")
 
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm gdi32 glad glm alieninvaderslibrary opengl
-)
+  winmm locallibraries)
+
 endif (WIN32)
 
 if (UNIX AND NOT APPLE)
