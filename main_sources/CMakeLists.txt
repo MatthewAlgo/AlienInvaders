@@ -68,15 +68,12 @@ CPMAddPackage(
   GITHUB_REPOSITORY SFML/SFML
   GIT_TAG 2.5.x
 )
+set(SFML_STATIC_LIBRARIES TRUE) # To use static libraries inside the project
 set_target_properties(sfml-system PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-network PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-window PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
-
-# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
-find_package(OpenGL REQUIRED)
-find_package(SFML REQUIRED)
 
 # CPMAddPackage(
 #   NAME imgui
@@ -96,6 +93,13 @@ CPMAddPackage(NAME MainLibraries SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/../main_li
 
 # ---- Create standalone executable ----
 
+# Some platforms need OpenGL. Most don't, because we are using the gl3w loader library.
+find_package(OpenGL REQUIRED)
+
+# set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/" ${CMAKE_MODULE_PATH})
+# find_package(SFML REQUIRED) # We don't need to find SFML as it is already located after CPM Call
+
+
 file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp)
 file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h")
 
@@ -112,15 +116,11 @@ target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graph
 endif (WIN32)
 
 if (UNIX AND NOT APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network glfw glad glm alieninvaderslibrary
-  opengl
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES})
 endif (UNIX AND NOT APPLE)
 
 if (APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network glm alieninvaderslibrary
-  opengl
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES})
 endif (APPLE)
 
 target_include_directories(

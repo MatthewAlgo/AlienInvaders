@@ -20,13 +20,11 @@ int main() {
   // -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system -lX11 -o AlienInvadersRetro.elf
 
 #ifdef __linux__
-  // XInitThreads(); // Calls the Thread Initialization for Linux
+  XInitThreads(); // Calls the Thread Initialization for Linux
 #endif
 
   /// BETA area
-  ///	MatthewsNamespace::PlayerStats* Window = new MatthewsNamespace::PlayerStats("Test", 1000,
-  ///500);
-  ///
+  /// Nothing Here for now :)
 
   MatthewsNamespace::MainWindowClass* MyMainWindow;
   MyMainWindow = new MatthewsNamespace::MainWindowClass("AlienInvasion - Main Menu", 1000, 500);
