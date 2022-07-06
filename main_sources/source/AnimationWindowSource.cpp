@@ -12,11 +12,13 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
   sf::WindowHandle handle
       = ITEM_HOLDER.getA()->getSystemHandle();  // Use the handle with OS specific functions
+  
   // Main Window Settings
   ITEM_HOLDER.getA()->setActive(true);
   ITEM_HOLDER.getA()->setVerticalSyncEnabled(true);
   ITEM_HOLDER.getA()->setFramerateLimit(30);
   ANIMATION_INSTANCES = 1;
+  
   //////// Create a separate thread to render the textures
   if (!((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
         || (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped))) {
@@ -28,16 +30,17 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
       = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer,
                                                                                  this);
   RenderTextures(*CurrentHolder.get());
-  //////// Temporary - work in progress
+  
+  // Basically generates a random song each time it is not playing
   if (!(BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing)) {
     MatthewsNamespace::BoomBox::RandomSongGenerator();
   }
 
-  // INIT IMGUI
-  ImGui::SFML::Init(*ITEM_HOLDER.getA());
-  sf::Clock deltaClock;
+  // Init Imgui (Aleready initialized inside the constructor)
 
+  // Welcome effect by the boombox
   BoomBox::WelcomeEffect();
+  
   // Display main Window
   while (ITEM_HOLDER.getA()->isOpen()) {
     sf::Event* Event = new sf::Event();
@@ -125,8 +128,8 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
         }  // Keyboard input control here
       }
 
-      // INIT SFML WINDOW
-      ImGui::SFML::ProcessEvent(*ITEM_HOLDER.getA(), *Event);
+      // Catch events for IMGUI
+      ImGuiRenderer->ToBeCalledAfterEventHandling(Event);     
     }
     // Check for continuous key presses
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -151,11 +154,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     }
 
     // DISPLAY IMGUI
-    ImGui::SFML::Update(*ITEM_HOLDER.getA(), deltaClock.restart());
-    ImGui::ShowDemoWindow();
-    ImGui::Begin("Hello, world!");
-    ImGui::Button("Look at this pretty button");
-    ImGui::End();
+    ImGuiRenderer->ToBeCalledForDrawingWindowElements();    
 
     std::free(Event);
     MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
@@ -169,9 +168,6 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
 
     WINDOW->clear(sf::Color::Red);
     WINDOW->draw(BackGround->SPRITE);
-
-    // RENDER IMGUI
-    ImGui::SFML::Render(*WINDOW);
 
     // Draw the current player score
     ScoreText.setString("Player Score: " + std::to_string(Player1Score));
@@ -243,8 +239,8 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     }
   } else {
     WINDOW->clear(sf::Color::Red);
-    WINDOW->draw(BackGround->SPRITE);
-
+    WINDOW->draw(BackGround->SPRITE); 
+    
     // Draw the current player score
     ScoreText.setString("Player Score: " + std::to_string(Player1Score));
     LivesText.setString("Lives Remaining: " + std::to_string(*SpaceShipMainPlayer.getLife()));
@@ -260,12 +256,14 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     WINDOW->draw(GameOverText);
     PresskeyText.setString("Press ESC Key To Continue");
     WINDOW->draw(PresskeyText);
-    // Draw the rectangle prompt with the name of the player
+    // Draw the rectangle prompt with the name of the player 
 
     EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier
     EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
   }
-
+  
+  // RENDER IMGUI
+  ImGuiRenderer->RenderImguiContents();
   WINDOW->display();
 }
 void MatthewsNamespace::AnimationWindow::RenderTextures(

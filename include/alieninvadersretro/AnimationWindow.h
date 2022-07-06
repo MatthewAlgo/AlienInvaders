@@ -15,6 +15,7 @@
 #  include "SpaceShip.h"
 #  include "StructuresAndOtherFunctions.h"
 #  include "VirtualWindow.h"
+#  include "ImguiRendererForWindow.h"
 #  pragma endregion INCLUDES
 
 #  pragma region ANIMATION_WINDOW
@@ -39,12 +40,18 @@ namespace MatthewsNamespace {
     short Cnt1000 = 0;
     short LevelUpConstant = 0;
 
+    // We initialize an imgui renderer
+    std::unique_ptr<ImGUIRenderer> ImGuiRenderer; 
+
   public:
     static int ANIMATION_INSTANCES;
 
     AnimationWindow(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H) {
       SpaceShipMainPlayer.setMainWindowSize(
           W, H);  // Sets the windows size as seen from the player's perspective
+
+      // We init the IMGUI Context;
+      ImGuiRenderer = std::make_unique<ImGUIRenderer>(this->WindowPointer);
     };
     static AnimationWindow* const AnimWin;  // Singleton instance
 
