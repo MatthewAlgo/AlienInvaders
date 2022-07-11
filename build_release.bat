@@ -6,11 +6,6 @@
 :: Copy everything from res (Assuming we use VSCommunity)
 :: Xcopy /E /I .\res\* .\build\main_libraries\Release\
 
-:: Assuming we use other build systems
-:: Xcopy /E /I .\res\* .\build\standalone\
-
-
-
 :: Batch to build Executable
 
 cmake -S main_sources -B build/main_sources

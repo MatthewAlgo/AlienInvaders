@@ -10,6 +10,7 @@
 #  include <vector>
 #  include <memory>
 
+
 #  pragma region LibraryFuncs
 namespace MatthewsNamespace {
   class ImGUIRenderer {
@@ -24,7 +25,7 @@ namespace MatthewsNamespace {
 
     // Library Functions
     void ToBeCalledAfterEventHandling(sf::Event* Ev);    
-    void ToBeCalledForDrawingWindowElements();
+    void ToBeCalledForDrawingWindowElements(std::vector<std::string> VectorOfScores);
     void RenderImguiContents();
 
     // Getters

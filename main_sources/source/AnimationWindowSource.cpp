@@ -36,8 +36,6 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     MatthewsNamespace::BoomBox::RandomSongGenerator();
   }
 
-  // Init Imgui (Aleready initialized inside the constructor)
-
   // Welcome effect by the boombox
   BoomBox::WelcomeEffect();
   
@@ -126,10 +124,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
       } else if (Event->type == sf::Event::TextEntered) {
         if (Event->text.unicode == 'w') {
         }  // Keyboard input control here
-      }
-
-      // Catch events for IMGUI
-      ImGuiRenderer->ToBeCalledAfterEventHandling(Event);     
+      }    
     }
     // Check for continuous key presses
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -152,9 +147,6 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     if (!(BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing)) {
       MatthewsNamespace::BoomBox::RandomSongGenerator();
     }
-
-    // DISPLAY IMGUI
-    ImGuiRenderer->ToBeCalledForDrawingWindowElements();    
 
     std::free(Event);
     MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
@@ -262,8 +254,6 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
   }
   
-  // RENDER IMGUI
-  ImGuiRenderer->RenderImguiContents();
   WINDOW->display();
 }
 void MatthewsNamespace::AnimationWindow::RenderTextures(

@@ -1,10 +1,16 @@
-:: Batch to build app
+:: Batch to build Libraries
 
-cmake -S standalone -B build/standalone
-cmake --build build/standalone --config Debug
+:: cmake -S main_libraries -B build/main_libraries
+:: cmake --build build/main_libraries --config Debug
 
 :: Copy everything from res (Assuming we use VSCommunity)
-Xcopy /E /Icopy .\res\* .\build\standalone\Debug\
+:: Xcopy /E /I .\res\* .\build\main_libraries\Debug\
 
-:: Assuming we use other build systems
-:: Xcopy /E /I .\res\* .\build\standalone\
+
+:: Batch to build Executable
+
+cmake -S main_sources -B build/main_sources
+cmake --build build/main_sources --config Debug
+
+:: Copy everything from res (Assuming we use VSCommunity)
+Xcopy /E /I .\res\* .\build\main_sources\Debug\

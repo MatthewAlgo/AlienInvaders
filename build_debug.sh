@@ -1,7 +1,11 @@
-# Script to build app
 
-cmake -S standalone -B build/standalone
-cmake --build build/standalone
+# Batch to build app
+
+:: Batch to build Executable
+
+cmake -S main_sources -B build/main_sources
+cmake --build build/main_sources --config Debug
+
 
 # Copy everything from res
-cp -r ./res/* ./build/standalone/
+cp -r ./res/* ./build/main_sources/

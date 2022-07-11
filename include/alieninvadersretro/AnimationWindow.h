@@ -49,9 +49,6 @@ namespace MatthewsNamespace {
     AnimationWindow(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H) {
       SpaceShipMainPlayer.setMainWindowSize(
           W, H);  // Sets the windows size as seen from the player's perspective
-
-      // We init the IMGUI Context;
-      ImGuiRenderer = std::make_unique<ImGUIRenderer>(this->WindowPointer);
     };
     static AnimationWindow* const AnimWin;  // Singleton instance
 

@@ -17,13 +17,20 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 
 	std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer, this);
 	RenderTextures(*CurrentHolder.get());
-	//////// Temporary - work in progress
 
+	// Display main Window and reset the IMGUI delta clock
+	// We need to initiate the IMGUI context
+	ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA()); 
+	ImGuiRenderer->getDeltaClock()->restart();
 
-	// Display main Window
 	while (ITEM_HOLDER.getA()->isOpen()) {
 		sf::Event* Event = new sf::Event();
+		
 		while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
+			
+			// Event handling for IMGUi
+			ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
+			
 			if (Event->type == sf::Event::Closed) {
 				BoomBox::IS_MUSIC_ENABLED = false; // Disable music
 				BoomBox::LocalDJ->SOUND_MAIN.stop();
@@ -97,10 +104,13 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 			}
 		}
 		std::free(Event);
-		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), ITEM_HOLDER.getC());
+
+		MainWindowClass* MyWindowVirt = dynamic_cast<MainWindowClass*>(ITEM_HOLDER.getC()); // Polymorphic conversion
+		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), MyWindowVirt);
+		MyWindowVirt = NULL; delete MyWindowVirt;
 	}
 }
-void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::VirtualWindowClass* C) {
+void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::MainWindowClass* C) {
 	WINDOW->clear(sf::Color::Red);
 	WINDOW->draw(BackGround->SPRITE);
 
@@ -118,12 +128,17 @@ void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* 
 
 	// Draw the greeting text for the main window
 	WINDOW->draw(GreetingText);
+
+	// Draw IMGUI Elements
+	std::vector<std::string> ScoresVector = C->RawFileData;
+	ImGuiRenderer->ToBeCalledForDrawingWindowElements(ScoresVector);
+	ImGuiRenderer->RenderImguiContents();
 	WINDOW->display();
 }
 void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
 	// Inside a separate thread -> Background
 	BackGround = std::make_unique<ImageToBeDrawn>();
-	BackGround->TEXTURE.loadFromFile("BigSurWallpaper.png");
+	BackGround->TEXTURE.loadFromFile("GameAddicted.jpg");
 	BackGround->SPRITE.setTexture(BackGround->TEXTURE);
 	BackGround->SPRITE.setScale(0.5, 0.5);
 
@@ -145,7 +160,7 @@ void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::Ren
 	GreetingText.setFont(GlobalWindowFont);
 	GreetingText.setString("Alien Invasion - Retro");
 	GreetingText.setCharacterSize(24);
-	GreetingText.setFillColor(sf::Color::Blue);
+	GreetingText.setFillColor(sf::Color::Yellow);
 	GreetingText.setStyle(sf::Text::Bold);
 	GreetingText.setPosition(WWidth / 5, WHeight / 100);
 
@@ -167,4 +182,64 @@ void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::Ren
 
 
 }
+void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName){
+	// Load the scores from the file
+	std::ifstream ScoresFile(FileName);
+	if (ScoresFile.is_open()) {
+		std::string Line;
+		while (std::getline(ScoresFile, Line)) {
+			// Now we need to split the line into the name and the score
+			std::stringstream ss(Line);
+			std::string Name, Score;
+			std::getline(ss, Name, ' ');
+			std::getline(ss, Score, ' ');
+			// Now we need to convert the score to an integer
+			int ScoreInt = std::stoi(Score);
+			// Now we need to add the name and the score to the vector;
+			PlayerInfo TempPair = {std::pair<std::string, int>(Name, ScoreInt)};
+			PlayerInfoList.push_back(TempPair);
+		}
+		ScoresFile.close();
+	}
+	else {
+		std::cout << "Unable to open file" << std::endl;
+	}
+}
+
+std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::string FileName) {
+	std::vector<std::string> FileLines;
+	std::ifstream File(FileName);
+	if (File.is_open()) {
+		std::string Line;
+		while (std::getline(File, Line)) {
+			FileLines.push_back(Line);
+		}
+		File.close();
+	}
+	else {
+		std::cout << "Unable to open file" << std::endl;
+	}
+	return FileLines;
+}
+
+void MatthewsNamespace::MainWindowClass::ScoresSaverLocal(std::string FileName){
+	// Save the scores to the file
+	std::ofstream ScoresFile(FileName);
+	if (ScoresFile.is_open()) {
+		// Write the Current Best Score
+	}
+	else {
+		std::cout << "Unable to open file" << std::endl;
+	}
+}
+
+// Get best game score from a file
+int MatthewsNamespace::MainWindowClass::getBestScoreLocal(std::string FileName) {
+	std::ifstream MyFile(FileName);
+	int BestScore;
+	MyFile >> BestScore;
+	MyFile.close();
+	return BestScore;
+}
+
 #pragma endregion MAINCLASS_FUNC_IMPLEMENTATIONS
