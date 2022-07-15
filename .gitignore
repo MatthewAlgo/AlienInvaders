@@ -3,3 +3,6 @@
 
 # Out directory
 /out
+
+# .vs folder
+/.vs
