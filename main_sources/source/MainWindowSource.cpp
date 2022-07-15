@@ -15,7 +15,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 	ITEM_HOLDER.getA()->setVerticalSyncEnabled(true);
 	ITEM_HOLDER.getA()->setFramerateLimit(60);
 
-	std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer, this);
+	std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer.get(), this);
 	RenderTextures(*CurrentHolder.get());
 
 	// Display main Window and reset the IMGUI delta clock
@@ -36,7 +36,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 				BoomBox::LocalDJ->SOUND_MAIN.stop();
 				BoomBox::LocalDJ->MainThemeSound.stop();
 				sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
-				delete this->ParticleGenerator; // Delete the random particles generator
+				// delete this->ParticleGenerator; // Delete the random particles generator
 				ITEM_HOLDER.getA()->close(); // Deletes the animation window
 				exit(EXIT_SUCCESS);
 			}
@@ -82,7 +82,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					BoomBox::LocalDJ->SOUND_MAIN.stop();
 					BoomBox::LocalDJ->MainThemeSound.stop();
 					sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
-					delete this->ParticleGenerator; // Delete the random particles generator
+					// delete this->ParticleGenerator; // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
 
 					exit(EXIT_SUCCESS);
@@ -131,7 +131,7 @@ void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* 
 
 	// Draw IMGUI Elements
 	std::vector<std::string> ScoresVector = C->RawFileData;
-	ImGuiRenderer->ToBeCalledForDrawingWindowElements(ScoresVector);
+	ImGuiRenderer->ToBeCalledForDrawingWindowElements(ScoresVector, "Main Window");
 	ImGuiRenderer->RenderImguiContents();
 	WINDOW->display();
 }

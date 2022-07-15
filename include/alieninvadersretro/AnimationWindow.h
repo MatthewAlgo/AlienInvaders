@@ -35,7 +35,7 @@ namespace MatthewsNamespace {
     std::unique_ptr<ImageToBeDrawn> WindowTitleTextbox;
     long long Player1Score = 0;  // Player Score
 
-    std::vector<EnemySpaceShip*> VectorOfEnemies;
+    std::vector<std::unique_ptr<EnemySpaceShip>> VectorOfEnemies;
     int enemy_spawn_clock = 0;
     short Cnt1000 = 0;
     short LevelUpConstant = 0;
@@ -57,7 +57,7 @@ namespace MatthewsNamespace {
     void MainWindowThreadExecution(
         TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) override;
     void DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD,
-                              VirtualWindowClass* C) override;
+                              MatthewsNamespace::AnimationWindow* C);
     void RenderTextures(
         DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) override;
   };

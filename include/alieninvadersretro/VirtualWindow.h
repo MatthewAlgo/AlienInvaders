@@ -28,11 +28,11 @@ namespace MatthewsNamespace {
 
     // Variables related to the main window
     std::unique_ptr<ImageToBeDrawn> BackGround;
-    sf::RenderWindow* WindowPointer = NULL;
+    std::unique_ptr<sf::RenderWindow> WindowPointer;
     std::unique_ptr<sf::Thread> MainWindowThread;
-    sf::VideoMode* MainWindowVideo;
+    std::unique_ptr<sf::VideoMode> MainWindowVideo;
 
-    MatthewsNamespace::RandomParticlesGenerator* ParticleGenerator;
+    std::unique_ptr<MatthewsNamespace::RandomParticlesGenerator> ParticleGenerator;
 
   public:
     VirtualWindowClass(const std::string TITLE, int W, int H)
@@ -47,14 +47,14 @@ namespace MatthewsNamespace {
       MainWindowThread = std::make_unique<sf::Thread>([&]() -> void {
         // Create window and set active
         VirtualWindowClass::WindowPointer
-            = new sf::RenderWindow(*MainWindowVideo, WindowTitle,
+            = std::make_unique<sf::RenderWindow>(*MainWindowVideo, WindowTitle,
                                    sf::Style::Titlebar | sf::Style::Close);  // Create the window
         WindowPointer->setActive(false);
 
         std::unique_ptr<TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>>
             TripleHolder
             = std::make_unique<TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>>(
-                WindowPointer, MainWindowThread.get(), this);
+                WindowPointer.get(), MainWindowThread.get(), this);
 
         this->MainWindowThreadExecution(*TripleHolder);
       });

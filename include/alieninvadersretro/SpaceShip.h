@@ -17,7 +17,7 @@ namespace MatthewsNamespace {
   public:
     short Life = 50;
     // Each spaceship has a queue of bullets
-    std::deque<SpaceShipBullet*> BulletDeque;
+    std::deque<std::unique_ptr<SpaceShipBullet>> BulletDeque;
     
     // The spaceship moves according to the VirtualEntity
 
@@ -52,7 +52,7 @@ namespace MatthewsNamespace {
     void centerInWindow(sf::Vector2f WindowSize) override;
     void scaleSpaceShip(int scx, int scy) override;
     void Shoot(int PlayerScore);
-    int IterateThroughBullets(sf::RenderWindow* WINDOW, std::vector<EnemySpaceShip*>& Enemies);
+    int IterateThroughBullets(sf::RenderWindow* WINDOW, std::vector<std::unique_ptr<EnemySpaceShip>>& Enemies);
     void FreeUpMemoryBullets();
 
   };

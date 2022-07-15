@@ -19,7 +19,7 @@ namespace MatthewsNamespace {
     int shooter_clock = 0;
   public:
     // Each spaceship has a queue of bullets
-    std::deque<EnemySpaceShipBullet*> BulletDeque;
+    std::deque<std::unique_ptr<EnemySpaceShipBullet>> BulletDeque;
     static int LIFE_SUPPLIER;
 
     inline void MoveUp() override;

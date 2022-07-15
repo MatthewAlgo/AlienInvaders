@@ -13,12 +13,12 @@ namespace MatthewsNamespace {
   private:
     struct WhiteParticle {
       double x, y = 0;
-      sf::Texture* Texture;
+      std::unique_ptr<sf::Texture> Texture;
       sf::Sprite Sprite;
       double speed;
     };
     unsigned short generator_clock = 0;
-    std::vector<WhiteParticle*> VectorOfParticles;
+    std::vector<std::unique_ptr<WhiteParticle>> VectorOfParticles;
 
   public:
     RandomParticlesGenerator() = default;
@@ -36,10 +36,10 @@ namespace MatthewsNamespace {
         WhiteParticle Xparticle;
         sf::Texture Texture;
         Texture.loadFromFile("WhiteDot.png");
-        VectorOfParticles.push_back(new WhiteParticle(Xparticle));
+        VectorOfParticles.push_back(std::make_unique<WhiteParticle>(Xparticle));
         VectorOfParticles.back()->speed = Mersenne_Twister_Generator(5, 20);
         VectorOfParticles.back()->x = Mersenne_Twister_Generator(0, 1000);
-        VectorOfParticles.back()->Texture = new sf::Texture(Texture);
+        VectorOfParticles.back()->Texture = std::make_unique<sf::Texture>(Texture);
         VectorOfParticles.back()->Sprite.setTexture(*VectorOfParticles.back()->Texture);
         VectorOfParticles.back()->Sprite.setScale(0.01, 0.01);
         VectorOfParticles.back()->Sprite.setPosition(sf::Vector2f(VectorOfParticles.back()->x, 0));
@@ -58,10 +58,10 @@ namespace MatthewsNamespace {
     void ClearMemory(sf::RenderWindow* X) {
       for (int i{}; i < VectorOfParticles.size(); ++i) {
         if (VectorOfParticles.at(i)->y > X->getSize().y) {
-          delete VectorOfParticles.at(i)->Texture;
-          WhiteParticle* it = VectorOfParticles.at(i);
-          delete it;
-          it = nullptr;
+          // delete VectorOfParticles.at(i)->Texture;
+          // WhiteParticle* it = VectorOfParticles.at(i);
+          // delete it;
+          // it = nullptr;
           VectorOfParticles.erase(VectorOfParticles.begin() + i);
         }
       }

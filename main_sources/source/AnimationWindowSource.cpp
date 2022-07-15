@@ -1,8 +1,8 @@
 #include "alieninvadersretro/AnimationWindow.h"  // Grabs all related includes
 
 // INCLUDE IMGUI
-#include "imgui/imgui.h"
 #include "imgui-sfml/imgui-SFML.h"
+#include "imgui/imgui.h"
 
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
 int MatthewsNamespace::EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;
@@ -12,13 +12,13 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
   sf::WindowHandle handle
       = ITEM_HOLDER.getA()->getSystemHandle();  // Use the handle with OS specific functions
-  
+
   // Main Window Settings
   ITEM_HOLDER.getA()->setActive(true);
   ITEM_HOLDER.getA()->setVerticalSyncEnabled(true);
   ITEM_HOLDER.getA()->setFramerateLimit(30);
   ANIMATION_INSTANCES = 1;
-  
+
   //////// Create a separate thread to render the textures
   if (!((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
         || (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped))) {
@@ -27,18 +27,22 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   std::unique_ptr<sf::Thread> ThreadRenderer
       = std::make_unique<sf::Thread>([&]() -> void {});  // TODO: Render Textures Asynchronously
   std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder
-      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer,
+      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer.get(),
                                                                                  this);
   RenderTextures(*CurrentHolder.get());
-  
+
   // Basically generates a random song each time it is not playing
   if (!(BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing)) {
     MatthewsNamespace::BoomBox::RandomSongGenerator();
   }
 
+  // Initialize the Imgui Renderer
+  // ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
+  // ImGuiRenderer->getDeltaClock()->restart();
+
   // Welcome effect by the boombox
   BoomBox::WelcomeEffect();
-  
+
   // Display main Window
   while (ITEM_HOLDER.getA()->isOpen()) {
     sf::Event* Event = new sf::Event();
@@ -48,15 +52,16 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           // Delete players and their bullets
           for (int i{}; i < VectorOfEnemies.size(); ++i) {
             VectorOfEnemies.at(i)->Die();
-            EnemySpaceShip* Iterator = VectorOfEnemies.at(i);
-            delete Iterator;
+            // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+            // delete Iterator;
             VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
           }
+
           for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                i++) {  // Manage and free up the memory
-            SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i);
-            delete it;
-            it = nullptr;
+            // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+            // delete it;
+            // it = nullptr;
             SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
           }
           BoomBox::WindowSoundEffect();
@@ -69,11 +74,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
             BoomBox::LocalDJ->SOUND_MAIN.stop();
           }
-          delete this->ParticleGenerator;  // Delete the random particles generator
+          // delete this->ParticleGenerator;  // Delete the random particles generator
 
           // Clean up memory occupied by the window
           ITEM_HOLDER.getA()->close();
-          delete MainWindowVideo;
+          // delete MainWindowVideo;
 
           ANIMATION_INSTANCES = 0;
           MainWindowThread->terminate();
@@ -84,18 +89,20 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
       } else if (Event->type == sf::Event::KeyPressed) {
         if (Event->key.code == sf::Keyboard::Escape) {  // Exits on ESC pressed
           try {
+
             // Delete players and their bullets
             for (int i{}; i < VectorOfEnemies.size(); ++i) {
               VectorOfEnemies.at(i)->Die();
-              EnemySpaceShip* Iterator = VectorOfEnemies.at(i);
-              delete Iterator;
+              // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+              // delete Iterator;
               VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
             }
+
             for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                  i++) {  // Manage and free up the memory
-              SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i);
-              delete it;
-              it = nullptr;
+              // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+              // delete it;
+              // it = nullptr;
               SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
             }
             BoomBox::WindowSoundEffect();  // Start the BoomBox for MainWindow
@@ -108,11 +115,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
               BoomBox::LocalDJ->SOUND_MAIN.stop();
             }
-            delete this->ParticleGenerator;  // Delete the random particles generator
+            // delete this->ParticleGenerator;  // Delete the random particles generator
 
             // Clean up memory occupied by the window
             ITEM_HOLDER.getA()->close();
-            delete MainWindowVideo;
+            // delete MainWindowVideo;
 
             ANIMATION_INSTANCES = 0;
             MainWindowThread->terminate();
@@ -121,10 +128,10 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           break;
         }
 
-      } else if (Event->type == sf::Event::TextEntered) {
-        if (Event->text.unicode == 'w') {
-        }  // Keyboard input control here
-      }    
+      } else if (Event->type == sf::Event::TextEntered) {}
+
+      // Event Handling for imgui 
+      // ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
     }
     // Check for continuous key presses
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -149,12 +156,16 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     }
 
     std::free(Event);
+    AnimationWindow* MyWindowVirt
+        = dynamic_cast<AnimationWindow*>(ITEM_HOLDER.getC());  // Polymorphic conversion
     MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
-                                                             ITEM_HOLDER.getC());
+                                                             MyWindowVirt);
+    MyWindowVirt = NULL;
+    delete MyWindowVirt;
   }
 }
 void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
-    sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::VirtualWindowClass* C) {
+    sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::AnimationWindow* C) {
   if (*SpaceShipMainPlayer.getLife() > 0) {  // The player has lives and the game is running
     enemy_spawn_clock++;
 
@@ -170,13 +181,13 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     WINDOW->draw(*SpaceShipMainPlayer.getSpaceShipSprite());  // Draw the first spaceship
     // Manage the bullets for the first spaceship
     Player1Score += SpaceShipMainPlayer.IterateThroughBullets(WINDOW, VectorOfEnemies);
-    SpaceShipMainPlayer.FreeUpMemoryBullets();
+    // SpaceShipMainPlayer.FreeUpMemoryBullets();
 
     // For the enemies
     if (enemy_spawn_clock % 100 == 0) {
       // Spawn an enemy
-      EnemySpaceShip Espace;
-      VectorOfEnemies.push_back(new EnemySpaceShip(Espace));
+      std::unique_ptr<EnemySpaceShip> Espace = std::make_unique<EnemySpaceShip>();
+      VectorOfEnemies.push_back(Espace);
       VectorOfEnemies.back()->setMainWindowSize(WINDOW->getSize().x, WINDOW->getSize().y);
       VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "EnemySpaceShip.png");
       enemy_spawn_clock = MatthewsNamespace::RandomParticlesGenerator::Mersenne_Twister_Generator(
@@ -189,12 +200,13 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
           WINDOW, SpaceShipMainPlayer.getSpaceShipPosition().x,
           SpaceShipMainPlayer.getSpaceShipPosition().y, SpaceShipMainPlayer.Life);
       VectorOfEnemies.at(i)->FreeUpMemoryFromBullets(WINDOW);
+      
       // If offsetted -> Delete the enemy and subtract 1 life
       if (VectorOfEnemies.at(i)->getSpaceShipPosition().y > WINDOW->getSize().y + 20) {
         (*SpaceShipMainPlayer.getLife())--;
         VectorOfEnemies.at(i)->Die();
-        EnemySpaceShip* Iterator = VectorOfEnemies.at(i);
-        delete Iterator;
+        // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+        // delete Iterator;
         VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
       }
     }
@@ -229,10 +241,10 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     } else {
       Cnt1000 = 0;
     }
-  } else {
+  } else {  // Show game over screen -> Everything in here is rendered after the game is over
     WINDOW->clear(sf::Color::Red);
-    WINDOW->draw(BackGround->SPRITE); 
-    
+    WINDOW->draw(BackGround->SPRITE);
+
     // Draw the current player score
     ScoreText.setString("Player Score: " + std::to_string(Player1Score));
     LivesText.setString("Lives Remaining: " + std::to_string(*SpaceShipMainPlayer.getLife()));
@@ -248,12 +260,16 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     WINDOW->draw(GameOverText);
     PresskeyText.setString("Press ESC Key To Continue");
     WINDOW->draw(PresskeyText);
-    // Draw the rectangle prompt with the name of the player 
+    // Draw the rectangle prompt with the name of the player
+
+    
+    // ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
+    // ImGuiRenderer->RenderImguiContents();
 
     EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier
     EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
   }
-  
+
   WINDOW->display();
 }
 void MatthewsNamespace::AnimationWindow::RenderTextures(

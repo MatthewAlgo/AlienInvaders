@@ -34,7 +34,7 @@ namespace MatthewsNamespace {
     // Variables related to the textures and design elements
   public:
     // Structure to retain information about the players on the leaderboard
-    typedef struct PlayerInfo {
+    struct PlayerInfo {
       std::pair<std::string, int> PlayerNameAndScore;
     };
     std::vector<PlayerInfo> PlayerInfoList;

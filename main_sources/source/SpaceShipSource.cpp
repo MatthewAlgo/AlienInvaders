@@ -6,36 +6,36 @@ namespace MatthewsNamespace {
   void MatthewsNamespace::SpaceShip::Shoot(int PlayerScore) {
     // Load the bullet -> The bullet receives some speed of +10 per frame
     // The initial bullet / shuttle
-    SpaceShipBullet CurrentBullet;
+    std::unique_ptr<SpaceShipBullet> CurrentBullet = std::make_unique<SpaceShipBullet>();
     if (PlayerScore < 50'000) {
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 13, POS.y - 40);  // Front Bullet
     } else if (PlayerScore >= 50'000 && PlayerScore < 100'000) {
       // Side bullets upgrade
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x, POS.y - 40);
 
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 26, POS.y - 40);
     } else {
       // Triple shot
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x, POS.y - 40);
 
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 26, POS.y - 40);
 
-      BulletDeque.push_back(new SpaceShipBullet(CurrentBullet));
+      BulletDeque.push_back(CurrentBullet);
       BulletDeque.back()->setTexture("NeonVertical.png");
       BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
       BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 13, POS.y - 40);  // Front Bullet
@@ -43,7 +43,7 @@ namespace MatthewsNamespace {
   }
 
   int MatthewsNamespace::SpaceShip::IterateThroughBullets(sf::RenderWindow* WINDOW,
-                                                          std::vector<EnemySpaceShip*>& Enemies) {
+                                                          std::vector<std::unique_ptr<EnemySpaceShip>>& Enemies) {
     int scoreByPlayer = 0;
     for (int i{}; i < this->BulletDeque.size(); ++i) {
       WINDOW->draw(*this->BulletDeque[i]->getSpaceShipBulletSprite());
@@ -75,15 +75,15 @@ namespace MatthewsNamespace {
             if (*Enemies.at(j)->getLife() + EnemySpaceShip::LIFE_SUPPLIER == 0) {
               BoomBox::WindowCollisionEffect();  // Will generate a collision sound effect
               Enemies.at(j)->Die();
-              EnemySpaceShip* Iterator = Enemies.at(j);
-              delete Iterator;
+              // EnemySpaceShip* Iterator = Enemies.at(j);
+              // delete Iterator;
               Enemies.erase(Enemies.begin() + j);
             }
             if (this->BulletDeque.at(i) != NULL) {
               // We delete the bullet and deliver damage to the main space shuttle
-              SpaceShipBullet* it = this->BulletDeque.at(i);
-              delete it;
-              it = nullptr;
+              // SpaceShipBullet* it = this->BulletDeque.at(i);
+              // delete it;
+              // it = nullptr;
               this->BulletDeque.erase(this->BulletDeque.begin() + i);
             }
             break;  // Exit the loop so that variables are updated -> Seems to be time consuming
@@ -96,9 +96,9 @@ namespace MatthewsNamespace {
     for (unsigned int i{}; i < this->BulletDeque.size(); i++) {  // Manage and free up the memory
       if (this->BulletDeque.at(i)->getSpaceShipBulletPosition().y
           < -300) {  // If the bullet is offscreen
-        SpaceShipBullet* it = this->BulletDeque.at(i);
-        delete it;
-        it = nullptr;
+        // SpaceShipBullet* it = this->BulletDeque.at(i);
+        // delete it;
+        // it = nullptr;
         this->BulletDeque.erase(this->BulletDeque.begin() + i);
       }
     }

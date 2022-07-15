@@ -15,7 +15,7 @@ void MatthewsNamespace::VirtualWindowClass::MainWindowThreadExecution(
   ITEM_HOLDER.getA()->setVerticalSyncEnabled(true);
   ITEM_HOLDER.getA()->setFramerateLimit(60);
   std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder
-      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer,
+      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer.get(),
                                                                                  this);
   RenderTextures(*CurrentHolder.get());
   //////// Temporary - work in progress
@@ -26,14 +26,14 @@ void MatthewsNamespace::VirtualWindowClass::MainWindowThreadExecution(
     while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
       if (Event->type == sf::Event::Closed) {
         sf::sleep(sf::Time(sf::seconds(1)));  // Sleep for 1s
-        delete this->ParticleGenerator;       // Delete the random particles generator
+        // delete this->ParticleGenerator.get();       // Delete the random particles generator
         ITEM_HOLDER.getA()->close();          // Deletes the animation window
         exit(EXIT_SUCCESS);
       } else if (Event->type == sf::Event::KeyPressed) {
         if (Event->key.code == sf::Keyboard::Escape) {  // Exits on ESC pressed
 
           sf::sleep(sf::Time(sf::seconds(1)));  // Sleep for 1s
-          delete this->ParticleGenerator;       // Delete the random particles generator
+          // delete this->ParticleGenerator.get();       // Delete the random particles generator
           ITEM_HOLDER.getA()->close();          // Deletes the animation window
 
           exit(EXIT_SUCCESS);

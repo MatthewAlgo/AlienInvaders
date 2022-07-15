@@ -9,7 +9,7 @@
 namespace MatthewsNamespace {
   class SpaceShipBullet {
   protected:
-    typedef struct Position {
+    struct Position {
       double x, y;
     };
     Position POS;

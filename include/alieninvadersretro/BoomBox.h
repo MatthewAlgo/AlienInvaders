@@ -34,7 +34,7 @@ namespace MatthewsNamespace {
 
   public:
     static int BOOMBOX_INSTANCES;
-    typedef struct DJ {
+    struct DJ {
       sf::Sound CollisionSound, ShootSound, PShootSound, DeathSound, WelcomeSound, WindowSound,
           MainThemeSound, WrongSelectionSound, UpgradeSound, EvilSound, SOUND_MAIN;
       sf::SoundBuffer CollisionSoundBuffer, ShootSoundBuffer, PShootSoundBuffer, DeathSoundBuffer,

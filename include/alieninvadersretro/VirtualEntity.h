@@ -16,7 +16,7 @@ namespace MatthewsNamespace {
   private:
       short EntityLife = 10; // Each entity has a life
   protected:
-    typedef struct Position {
+    struct Position {
       double x, y, speed = 0;
     };
     Position POS;  // Each entity has a position

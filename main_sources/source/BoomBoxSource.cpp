@@ -22,7 +22,7 @@ namespace MatthewsNamespace {
     BOOMBOX_INSTANCES = 1;  // Trying to mimic a singleton pattern for now
 
     std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder
-        = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer,
+        = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer.get(),
                                                                                    this);
     RenderTextures(*CurrentHolder.get());
     //////// Temporary - work in progress
