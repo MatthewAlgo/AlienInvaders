@@ -33,13 +33,13 @@ namespace MatthewsNamespace {
     void Generate() {
       generator_clock++;
       if (generator_clock % 2 == 0) {
-        WhiteParticle Xparticle;
-        sf::Texture Texture;
-        Texture.loadFromFile("WhiteDot.png");
-        VectorOfParticles.push_back(std::make_unique<WhiteParticle>(Xparticle));
+        std::unique_ptr<WhiteParticle> Xparticle = std::make_unique<WhiteParticle>();
+        std::unique_ptr<sf::Texture> Texture = std::make_unique<sf::Texture>();
+        Texture->loadFromFile("WhiteDot.png");
+        VectorOfParticles.push_back(std::move(Xparticle));
         VectorOfParticles.back()->speed = Mersenne_Twister_Generator(5, 20);
         VectorOfParticles.back()->x = Mersenne_Twister_Generator(0, 1000);
-        VectorOfParticles.back()->Texture = std::make_unique<sf::Texture>(Texture);
+        VectorOfParticles.back()->Texture = std::move(Texture);
         VectorOfParticles.back()->Sprite.setTexture(*VectorOfParticles.back()->Texture);
         VectorOfParticles.back()->Sprite.setScale(0.01, 0.01);
         VectorOfParticles.back()->Sprite.setPosition(sf::Vector2f(VectorOfParticles.back()->x, 0));

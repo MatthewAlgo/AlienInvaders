@@ -58,7 +58,7 @@ void MatthewsNamespace::EnemySpaceShip::Shoot() {
     // Load the bullet -> The bullet receives some speed of +10 per frame
     std::unique_ptr<EnemySpaceShipBullet> CurrentBullet =
         std::make_unique<EnemySpaceShipBullet>();
-    BulletDeque.push_back(CurrentBullet);
+    BulletDeque.push_back(std::move(CurrentBullet));
 
     BulletDeque.back()->setTexture("NeonVertical.png");
     BulletDeque.back()->scaleSpaceShipBullet(0.4, 0.2);
@@ -116,9 +116,9 @@ void MatthewsNamespace::EnemySpaceShip::DrawBulletsInWindow(sf::RenderWindow* Wi
         // Show game over screen or whatever
 
         // We delete the bullet and deliver damage to the main space shuttle
-        // EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
-        // delete it;
-        // it = nullptr;
+        EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
+        delete it;
+        it = nullptr;
         this->BulletDeque.erase(this->BulletDeque.begin() + i);
       }
   }
@@ -128,9 +128,9 @@ void MatthewsNamespace::EnemySpaceShip::FreeUpMemoryFromBullets(sf::RenderWindow
   for (unsigned int i{}; i < this->BulletDeque.size(); i++) {  // Manage and free up the memory
     if (this->BulletDeque.at(i)->getSpaceShipBulletPosition().y
         > Window->getSize().y) {  // If the bullet is offscreen
-      // EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
-      // delete it;
-      // it = nullptr;
+      EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
+      delete it;
+      it = nullptr;
       this->BulletDeque.erase(this->BulletDeque.begin() + i);
     }
   }
@@ -151,9 +151,9 @@ void MatthewsNamespace::EnemySpaceShip::MoveRandomLeftOrRightorUpOrDown() {
 }
 void MatthewsNamespace::EnemySpaceShip::Die() {                // Free up the buffer of bullets
   for (unsigned int i{}; i < this->BulletDeque.size(); i++) {  // Manage and free up the memory
-    // EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
-    // delete it;
-    // it = nullptr;
+    EnemySpaceShipBullet* it = this->BulletDeque.at(i).get();
+    delete it;
+    it = nullptr;
     this->BulletDeque.erase(this->BulletDeque.begin() + i);
   }
 }

@@ -16,7 +16,7 @@
 namespace MatthewsNamespace {
   class ImGUIRenderer {
   protected:
-    std::shared_ptr<sf::RenderWindow> SFMLWindow;
+    sf::RenderWindow* SFMLWindow;
     sf::Clock DeltaClock;
     char* StringForInputText; // = new char[256]
     

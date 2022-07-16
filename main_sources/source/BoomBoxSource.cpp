@@ -270,10 +270,7 @@ namespace MatthewsNamespace {
                   && CurrentPosInSamples + i
                          < BoomBox::getMainTheme()->getBuffer()->getSampleCount()) {
                 sf::VertexArray Vertex(sf::LinesStrip, 2);
-                // Vertex[0].position = sf::Vector2f(LocalBuffer[CurrentPosInSamples + i - 3] / 100,
-                // LocalBuffer[CurrentPosInSamples + i - 2] / 100 + BoomBoxWindow->getSize().y/2);
-                // Vertex[1].position = sf::Vector2f(LocalBuffer[CurrentPosInSamples + i - 1]/100,
-                // LocalBuffer[CurrentPosInSamples + i]/100+ BoomBoxWindow->getSize().y / 2);
+                
                 Vertex[0].position = sf::Vector2f(i, LocalBuffer[CurrentPosInSamples + i - 2] / 200
                                                          + BoomBoxWindow->getSize().y / 2);
                 Vertex[1].position = sf::Vector2f(i + 1, LocalBuffer[CurrentPosInSamples + i] / 200

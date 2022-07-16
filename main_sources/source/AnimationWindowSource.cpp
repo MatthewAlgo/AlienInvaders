@@ -52,16 +52,16 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           // Delete players and their bullets
           for (int i{}; i < VectorOfEnemies.size(); ++i) {
             VectorOfEnemies.at(i)->Die();
-            // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-            // delete Iterator;
+            EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+            delete Iterator;
             VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
           }
 
           for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                i++) {  // Manage and free up the memory
-            // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
-            // delete it;
-            // it = nullptr;
+            SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+            delete it;
+            it = nullptr;
             SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
           }
           BoomBox::WindowSoundEffect();
@@ -74,11 +74,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
             BoomBox::LocalDJ->SOUND_MAIN.stop();
           }
-          // delete this->ParticleGenerator;  // Delete the random particles generator
+          delete this->ParticleGenerator.get();  // Delete the random particles generator
 
           // Clean up memory occupied by the window
           ITEM_HOLDER.getA()->close();
-          // delete MainWindowVideo;
+          delete MainWindowVideo.get();
 
           ANIMATION_INSTANCES = 0;
           MainWindowThread->terminate();
@@ -93,16 +93,16 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             // Delete players and their bullets
             for (int i{}; i < VectorOfEnemies.size(); ++i) {
               VectorOfEnemies.at(i)->Die();
-              // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-              // delete Iterator;
+              EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+              delete Iterator;
               VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
             }
 
             for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                  i++) {  // Manage and free up the memory
-              // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
-              // delete it;
-              // it = nullptr;
+              SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+              delete it;
+              it = nullptr;
               SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
             }
             BoomBox::WindowSoundEffect();  // Start the BoomBox for MainWindow
@@ -115,11 +115,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
               BoomBox::LocalDJ->SOUND_MAIN.stop();
             }
-            // delete this->ParticleGenerator;  // Delete the random particles generator
+            delete this->ParticleGenerator.get();  // Delete the random particles generator
 
             // Clean up memory occupied by the window
             ITEM_HOLDER.getA()->close();
-            // delete MainWindowVideo;
+            delete MainWindowVideo.get();
 
             ANIMATION_INSTANCES = 0;
             MainWindowThread->terminate();
@@ -181,13 +181,13 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     WINDOW->draw(*SpaceShipMainPlayer.getSpaceShipSprite());  // Draw the first spaceship
     // Manage the bullets for the first spaceship
     Player1Score += SpaceShipMainPlayer.IterateThroughBullets(WINDOW, VectorOfEnemies);
-    // SpaceShipMainPlayer.FreeUpMemoryBullets();
+    SpaceShipMainPlayer.FreeUpMemoryBullets();
 
     // For the enemies
     if (enemy_spawn_clock % 100 == 0) {
       // Spawn an enemy
       std::unique_ptr<EnemySpaceShip> Espace = std::make_unique<EnemySpaceShip>();
-      VectorOfEnemies.push_back(Espace);
+      VectorOfEnemies.push_back(std::move(Espace));
       VectorOfEnemies.back()->setMainWindowSize(WINDOW->getSize().x, WINDOW->getSize().y);
       VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "EnemySpaceShip.png");
       enemy_spawn_clock = MatthewsNamespace::RandomParticlesGenerator::Mersenne_Twister_Generator(
@@ -205,8 +205,8 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
       if (VectorOfEnemies.at(i)->getSpaceShipPosition().y > WINDOW->getSize().y + 20) {
         (*SpaceShipMainPlayer.getLife())--;
         VectorOfEnemies.at(i)->Die();
-        // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-        // delete Iterator;
+        EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+        delete Iterator;
         VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
       }
     }

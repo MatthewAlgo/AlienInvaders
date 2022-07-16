@@ -38,7 +38,7 @@ namespace MatthewsNamespace {
     virtual ~VirtualEntity() = default;        // Default destructor
 
 
-    std::deque<SpaceShipBullet*> BulletDeque;  // Each entity has its own stack of bullets
+    std::deque<std::unique_ptr<SpaceShipBullet>> BulletDeque;  // Each entity has its own stack of bullets
 
     // FUNCTIONS - EACH ENTITY CAN MOVE
     virtual void MoveUp();

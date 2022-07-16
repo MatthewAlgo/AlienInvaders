@@ -2,7 +2,7 @@
 
 MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
   // We define constructor functions here
-  SFMLWindow = std::make_shared<sf::RenderWindow>(T);         // The pointer now points to the window passed as parameter
+  SFMLWindow = T;         // The pointer now points to the window passed as parameter
   ImGui::SFML::Init(*T);  // We initialize the window using the object pointed to
   DeltaClock.restart();
 }
@@ -56,7 +56,7 @@ sf::Clock* MatthewsNamespace::ImGUIRenderer::getDeltaClock() {  // Clock
   return &this->DeltaClock;
 }
 sf::RenderWindow* MatthewsNamespace::ImGUIRenderer::getSFMLWindow() {  // SFMLWindow
-  return this->SFMLWindow.get();
+  return this->SFMLWindow;
 }
 char* MatthewsNamespace::ImGUIRenderer::getStringForInputText() {
   return this->StringForInputText;
@@ -64,4 +64,4 @@ char* MatthewsNamespace::ImGUIRenderer::getStringForInputText() {
 
 // Setters
 void MatthewsNamespace::ImGUIRenderer::setDeltaClock(sf::Clock Delta) { DeltaClock = Delta; }
-void MatthewsNamespace::ImGUIRenderer::setSFMLWindow(sf::RenderWindow* T) { SFMLWindow = std::make_shared<sf::RenderWindow>(T); }
+void MatthewsNamespace::ImGUIRenderer::setSFMLWindow(sf::RenderWindow* T) { SFMLWindow = T; }
