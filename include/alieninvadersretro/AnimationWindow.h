@@ -39,6 +39,7 @@ namespace MatthewsNamespace {
     int enemy_spawn_clock = 0;
     short Cnt1000 = 0;
     short LevelUpConstant = 0;
+    long PausedParity = 0;
 
     // We initialize an imgui renderer
     std::unique_ptr<ImGUIRenderer> ImGuiRenderer; 

@@ -5,7 +5,6 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
-#include <iostream>
 
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
 void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
@@ -201,9 +200,6 @@ void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName)
 		}
 		ScoresFile.close();
 	}
-	else {
-		std::cout << "Unable to open file" << std::endl;
-	}
 }
 
 std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::string FileName) {
@@ -216,9 +212,6 @@ std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::
 		}
 		File.close();
 	}
-	else {
-		std::cout << "Unable to open file" << std::endl;
-	}
 	return FileLines;
 }
 
@@ -227,9 +220,6 @@ void MatthewsNamespace::MainWindowClass::ScoresSaverLocal(std::string FileName){
 	std::ofstream ScoresFile(FileName);
 	if (ScoresFile.is_open()) {
 		// Write the Current Best Score
-	}
-	else {
-		std::cout << "Unable to open file" << std::endl;
 	}
 }
 

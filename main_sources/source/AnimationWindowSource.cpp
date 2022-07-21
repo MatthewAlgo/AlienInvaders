@@ -27,8 +27,8 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   std::unique_ptr<sf::Thread> ThreadRenderer
       = std::make_unique<sf::Thread>([&]() -> void {});  // TODO: Render Textures Asynchronously
   std::unique_ptr<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>> CurrentHolder
-      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(WindowPointer.get(),
-                                                                                 this);
+      = std::make_unique<DoubleItemHolder<sf::RenderWindow, VirtualWindowClass>>(
+          WindowPointer.get(), this);
   RenderTextures(*CurrentHolder.get());
 
   // Basically generates a random song each time it is not playing
@@ -47,21 +47,24 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   while (ITEM_HOLDER.getA()->isOpen()) {
     sf::Event* Event = new sf::Event();
     while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
+      // Event Handling for imgui
+      // ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
+    
       if (Event->type == sf::Event::Closed) {
         try {
           // Delete players and their bullets
           for (int i{}; i < VectorOfEnemies.size(); ++i) {
             VectorOfEnemies.at(i)->Die();
-            EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-            delete Iterator;
+            // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+            // delete Iterator;
             VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
           }
 
           for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                i++) {  // Manage and free up the memory
-            SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
-            delete it;
-            it = nullptr;
+            // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+            // delete it;
+            // it = nullptr;
             SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
           }
           BoomBox::WindowSoundEffect();
@@ -74,11 +77,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
             BoomBox::LocalDJ->SOUND_MAIN.stop();
           }
-          delete this->ParticleGenerator.get();  // Delete the random particles generator
+          // delete this->ParticleGenerator.get();  // Delete the random particles generator
 
           // Clean up memory occupied by the window
           ITEM_HOLDER.getA()->close();
-          delete MainWindowVideo.get();
+          // delete MainWindowVideo.get();
 
           ANIMATION_INSTANCES = 0;
           MainWindowThread->terminate();
@@ -89,20 +92,19 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
       } else if (Event->type == sf::Event::KeyPressed) {
         if (Event->key.code == sf::Keyboard::Escape) {  // Exits on ESC pressed
           try {
-
             // Delete players and their bullets
             for (int i{}; i < VectorOfEnemies.size(); ++i) {
               VectorOfEnemies.at(i)->Die();
-              EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-              delete Iterator;
+              // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+              // delete Iterator;
               VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
             }
 
             for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
                  i++) {  // Manage and free up the memory
-              SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
-              delete it;
-              it = nullptr;
+              // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+              // delete it;
+              // it = nullptr;
               SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
             }
             BoomBox::WindowSoundEffect();  // Start the BoomBox for MainWindow
@@ -115,11 +117,11 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
               BoomBox::LocalDJ->SOUND_MAIN.stop();
             }
-            delete this->ParticleGenerator.get();  // Delete the random particles generator
+            // delete this->ParticleGenerator.get();  // Delete the random particles generator
 
             // Clean up memory occupied by the window
             ITEM_HOLDER.getA()->close();
-            delete MainWindowVideo.get();
+            // delete MainWindowVideo.get();
 
             ANIMATION_INSTANCES = 0;
             MainWindowThread->terminate();
@@ -127,27 +129,30 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           }
           break;
         }
+        if (Event->key.code == sf::Keyboard::P) {
+          PausedParity++;
+          BoomBox::WindowSoundEffect();
+        }
 
       } else if (Event->type == sf::Event::TextEntered) {}
-
-      // Event Handling for imgui 
-      // ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
     }
-    // Check for continuous key presses
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-      SpaceShipMainPlayer.MoveLeft();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-      SpaceShipMainPlayer.MoveRight();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-      SpaceShipMainPlayer.MoveUp();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-      SpaceShipMainPlayer.MoveDown();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-      SpaceShipMainPlayer.Shoot(Player1Score);
+    // Check for continuous key presses - if the game is not paused
+    if (PausedParity % 2 == 0) {
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        SpaceShipMainPlayer.MoveLeft();
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+        SpaceShipMainPlayer.MoveRight();
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+        SpaceShipMainPlayer.MoveUp();
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+        SpaceShipMainPlayer.MoveDown();
+      }
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        SpaceShipMainPlayer.Shoot(Player1Score);
+      }
     }
 
     // Check For BoomBox Status
@@ -166,82 +171,110 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
 }
 void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::AnimationWindow* C) {
-  if (*SpaceShipMainPlayer.getLife() > 0) {  // The player has lives and the game is running
-    enemy_spawn_clock++;
+  if (PausedParity % 2 == 0) {
+    if (*SpaceShipMainPlayer.getLife() > 0) {  // The player has lives and the game is running
+      enemy_spawn_clock++;
 
-    WINDOW->clear(sf::Color::Red);
-    WINDOW->draw(BackGround->SPRITE);
+      WINDOW->clear(sf::Color::Red);
+      WINDOW->draw(BackGround->SPRITE);
 
-    // Draw the current player score
-    ScoreText.setString("Player Score: " + std::to_string(Player1Score));
-    LivesText.setString("Lives Remaining: " + std::to_string(*SpaceShipMainPlayer.getLife()));
-    WINDOW->draw(ScoreText);
-    WINDOW->draw(LivesText);
+      // Draw the current player score
+      ScoreText.setString("Player Score: " + std::to_string(Player1Score));
+      LivesText.setString("Lives Remaining: " + std::to_string(*SpaceShipMainPlayer.getLife()));
+      WINDOW->draw(ScoreText);
+      WINDOW->draw(LivesText);
 
-    WINDOW->draw(*SpaceShipMainPlayer.getSpaceShipSprite());  // Draw the first spaceship
-    // Manage the bullets for the first spaceship
-    Player1Score += SpaceShipMainPlayer.IterateThroughBullets(WINDOW, VectorOfEnemies);
-    SpaceShipMainPlayer.FreeUpMemoryBullets();
+      WINDOW->draw(*SpaceShipMainPlayer.getSpaceShipSprite());  // Draw the first spaceship
+      // Manage the bullets for the first spaceship
+      Player1Score += SpaceShipMainPlayer.IterateThroughBullets(WINDOW, VectorOfEnemies);
+      SpaceShipMainPlayer.FreeUpMemoryBullets();
 
-    // For the enemies
-    if (enemy_spawn_clock % 100 == 0) {
-      // Spawn an enemy
-      std::unique_ptr<EnemySpaceShip> Espace = std::make_unique<EnemySpaceShip>();
-      VectorOfEnemies.push_back(std::move(Espace));
-      VectorOfEnemies.back()->setMainWindowSize(WINDOW->getSize().x, WINDOW->getSize().y);
-      VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "EnemySpaceShip.png");
-      enemy_spawn_clock = MatthewsNamespace::RandomParticlesGenerator::Mersenne_Twister_Generator(
-          60 + LevelUpConstant, 70 + LevelUpConstant);
-    }
-    for (int i{}; i < VectorOfEnemies.size(); ++i) {
-      VectorOfEnemies.at(i)->Draw_IterateExistingItem(WINDOW);
-      VectorOfEnemies.at(i)->Shoot();
-      VectorOfEnemies.at(i)->DrawBulletsInWindow(
-          WINDOW, SpaceShipMainPlayer.getSpaceShipPosition().x,
-          SpaceShipMainPlayer.getSpaceShipPosition().y, SpaceShipMainPlayer.Life);
-      VectorOfEnemies.at(i)->FreeUpMemoryFromBullets(WINDOW);
-      
-      // If offsetted -> Delete the enemy and subtract 1 life
-      if (VectorOfEnemies.at(i)->getSpaceShipPosition().y > WINDOW->getSize().y + 20) {
-        (*SpaceShipMainPlayer.getLife())--;
-        VectorOfEnemies.at(i)->Die();
-        EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
-        delete Iterator;
-        VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
+      // For the enemies
+      if (enemy_spawn_clock % 100 == 0) {
+        // Spawn an enemy
+        std::unique_ptr<EnemySpaceShip> Espace = std::make_unique<EnemySpaceShip>();
+        VectorOfEnemies.push_back(std::move(Espace));
+        VectorOfEnemies.back()->setMainWindowSize(WINDOW->getSize().x, WINDOW->getSize().y);
+        VectorOfEnemies.back()->GenerateInDrawFunctionOfMainWindow(WINDOW, "EnemySpaceShip.png");
+        enemy_spawn_clock = MatthewsNamespace::RandomParticlesGenerator::Mersenne_Twister_Generator(
+            60 + LevelUpConstant, 70 + LevelUpConstant);
       }
-    }
+      for (int i{}; i < VectorOfEnemies.size(); ++i) {
+        VectorOfEnemies.at(i)->Draw_IterateExistingItem(WINDOW);
+        VectorOfEnemies.at(i)->Shoot();
+        VectorOfEnemies.at(i)->DrawBulletsInWindow(
+            WINDOW, SpaceShipMainPlayer.getSpaceShipPosition().x,
+            SpaceShipMainPlayer.getSpaceShipPosition().y, SpaceShipMainPlayer.Life);
+        VectorOfEnemies.at(i)->FreeUpMemoryFromBullets(WINDOW);
 
-    // For the particle generator
-    ParticleGenerator->Generate();
-    ParticleGenerator->InLoopForParticles(WINDOW);
-    ParticleGenerator->ClearMemory(WINDOW);
+        // If offsetted -> Delete the enemy and subtract 1 life
+        if (VectorOfEnemies.at(i)->getSpaceShipPosition().y > WINDOW->getSize().y + 20) {
+          (*SpaceShipMainPlayer.getLife())--;
+          VectorOfEnemies.at(i)->Die();
+          // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+          // delete Iterator;
+          VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
+        }
+      }
 
-    // If the score % 10000 == 0 - increase the difficulty - enemies have more life
-    if (Player1Score % 10'000 == 0 && Player1Score != 0) {
-      Cnt1000++;
-      if (Cnt1000 == 1) {
-        // Do stuff to be executed once
-        if (Player1Score == 50'000) {
-          BoomBox::UpgradeEffect();  // Switch to double cannon configuration
+      // For the particle generator
+      ParticleGenerator->Generate();
+      ParticleGenerator->InLoopForParticles(WINDOW);
+      ParticleGenerator->ClearMemory(WINDOW);
+
+      // If the score % 10000 == 0 - increase the difficulty - enemies have more life
+      if (Player1Score % 10'000 == 0 && Player1Score != 0) {
+        Cnt1000++;
+        if (Cnt1000 == 1) {
+          // Do stuff to be executed once
+          if (Player1Score == 50'000) {
+            BoomBox::UpgradeEffect();  // Switch to double cannon configuration
+          }
+          if (Player1Score == 100'000) {
+            BoomBox::UpgradeEffect();  // Switch to triple cannon configuration
+          }
+          if ((Player1Score > 100'000) && (Player1Score % 20'000 == 0)) {
+            EnemySpaceShip::LIFE_SUPPLIER++;
+            BoomBox::EvilEffect();
+          }
+          if (LevelUpConstant + 5 <= 25)  // 5 Difficulty Levels
+            LevelUpConstant += 5;
+          else if (Player1Score % 20'000)
+            EnemySpaceShipBullet::DAMAGE_SUPPLIER++;
+        } else {
+          Cnt1000 = 2;
         }
-        if (Player1Score == 100'000) {
-          BoomBox::UpgradeEffect();  // Switch to triple cannon configuration
-        }
-        if ((Player1Score > 100'000) && (Player1Score % 20'000 == 0)) {
-          EnemySpaceShip::LIFE_SUPPLIER++;
-          BoomBox::EvilEffect();
-        }
-        if (LevelUpConstant + 5 <= 25)  // 5 Difficulty Levels
-          LevelUpConstant += 5;
-        else if (Player1Score % 20'000)
-          EnemySpaceShipBullet::DAMAGE_SUPPLIER++;
       } else {
-        Cnt1000 = 2;
+        Cnt1000 = 0;
       }
-    } else {
-      Cnt1000 = 0;
+    } else {  // Show game over screen -> Everything in here is rendered after the game is over
+      WINDOW->clear(sf::Color::Red);
+      WINDOW->draw(BackGround->SPRITE);
+
+      // Draw the current player score
+      ScoreText.setString("Player Score: " + std::to_string(Player1Score));
+      LivesText.setString("Lives Remaining: " + std::to_string(*SpaceShipMainPlayer.getLife()));
+      WINDOW->draw(ScoreText);
+      WINDOW->draw(LivesText);
+
+      // For the particle generator
+      ParticleGenerator->Generate();
+      ParticleGenerator->InLoopForParticles(WINDOW);
+      ParticleGenerator->ClearMemory(WINDOW);
+
+      GameOverText.setString("Game Over");
+      WINDOW->draw(GameOverText);
+      PresskeyText.setString("Press ESC Key To Continue");
+      WINDOW->draw(PresskeyText);
+      // Draw the rectangle prompt with the name of the player
+
+      // ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
+      // ImGuiRenderer->RenderImguiContents();
+
+      EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier
+      EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
     }
-  } else {  // Show game over screen -> Everything in here is rendered after the game is over
+  } else {  // The game is paused
     WINDOW->clear(sf::Color::Red);
     WINDOW->draw(BackGround->SPRITE);
 
@@ -256,18 +289,13 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     ParticleGenerator->InLoopForParticles(WINDOW);
     ParticleGenerator->ClearMemory(WINDOW);
 
-    GameOverText.setString("Game Over");
+    GameOverText.setPosition(WWidth / 3.25, WHeight / 2 - 50);
+    GameOverText.setString("Paused");
     WINDOW->draw(GameOverText);
-    PresskeyText.setString("Press ESC Key To Continue");
+    PresskeyText.setString("Press P Key To Continue");
     WINDOW->draw(PresskeyText);
-    // Draw the rectangle prompt with the name of the player
-
-    
-    // ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
-    // ImGuiRenderer->RenderImguiContents();
-
-    EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier
-    EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
+    GameOverText.setPosition(
+        WWidth / 4, WHeight / 2 - 50);  // Prepare the entity again to be used as a game over text
   }
 
   WINDOW->display();

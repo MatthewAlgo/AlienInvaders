@@ -17,7 +17,7 @@ namespace MatthewsNamespace {
   public:
     short Life = 50;
     // Each spaceship has a queue of bullets
-    std::deque<std::unique_ptr<SpaceShipBullet>> BulletDeque;
+    std::deque<std::shared_ptr<SpaceShipBullet>> BulletDeque;
     
     // The spaceship moves according to the VirtualEntity
 
