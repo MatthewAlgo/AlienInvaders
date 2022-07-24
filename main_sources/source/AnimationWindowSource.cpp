@@ -37,8 +37,8 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   }
 
   // Initialize the Imgui Renderer
-  // ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
-  // ImGuiRenderer->getDeltaClock()->restart();
+  this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
+  this->ImGuiRenderer->getDeltaClock()->restart();
 
   // Welcome effect by the boombox
   BoomBox::WelcomeEffect();
@@ -46,9 +46,13 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   // Display main Window
   while (ITEM_HOLDER.getA()->isOpen()) {
     sf::Event* Event = new sf::Event();
+    
+    ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
     while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
+
       // Event Handling for imgui
-      // ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
+      this->ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
+      // ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
     
       if (Event->type == sf::Event::Closed) {
         try {
@@ -77,14 +81,16 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
             BoomBox::LocalDJ->SOUND_MAIN.stop();
           }
-          // delete this->ParticleGenerator.get();  // Delete the random particles generator
+          ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
+          delete this->ParticleGenerator.get();  // Delete the random particles generator
 
           // Clean up memory occupied by the window
           ITEM_HOLDER.getA()->close();
-          // delete MainWindowVideo.get();
+          delete MainWindowVideo.get();
 
           ANIMATION_INSTANCES = 0;
           MainWindowThread->terminate();
+          ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
         } catch (std::exception E) {
         }
         break;
@@ -117,11 +123,12 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
               BoomBox::LocalDJ->SOUND_MAIN.stop();
             }
-            // delete this->ParticleGenerator.get();  // Delete the random particles generator
+            ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
+            delete this->ParticleGenerator.get();  // Delete the random particles generator
 
             // Clean up memory occupied by the window
             ITEM_HOLDER.getA()->close();
-            // delete MainWindowVideo.get();
+            delete MainWindowVideo.get();
 
             ANIMATION_INSTANCES = 0;
             MainWindowThread->terminate();
@@ -129,13 +136,61 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           }
           break;
         }
-        if (Event->key.code == sf::Keyboard::P) {
+        if(Event->key.code == sf::Keyboard::Enter){
+					// We get the text currently entered in the ImGui instance and append it to the file
+					ImGuiRenderer->getStringForInputText();
+					// We open the text file and append the text
+					std::ofstream fout("Scores.txt", std::ios_base::app);
+					fout<<ImGuiRenderer->getStringForInputText()<<" --- "<<Player1Score<<std::endl;
+          // We close the window immediately to prevent other interactions
+          try {
+            // Delete players and their bullets
+            for (int i{}; i < VectorOfEnemies.size(); ++i) {
+              VectorOfEnemies.at(i)->Die();
+              // EnemySpaceShip* Iterator = VectorOfEnemies.at(i).get();
+              // delete Iterator;
+              VectorOfEnemies.erase(VectorOfEnemies.begin() + i);
+            }
+
+            for (unsigned int i{}; i < SpaceShipMainPlayer.BulletDeque.size();
+                 i++) {  // Manage and free up the memory
+              // SpaceShipBullet* it = SpaceShipMainPlayer.BulletDeque.at(i).get();
+              // delete it;
+              // it = nullptr;
+              SpaceShipMainPlayer.BulletDeque.erase(SpaceShipMainPlayer.BulletDeque.begin() + i);
+            }
+            BoomBox::WindowSoundEffect();  // Start the BoomBox for MainWindow
+            if ((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
+                || (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) {
+              // BoomBox::StartMainThemeSong();
+              BoomBox::getMainTheme()->play();
+            }
+            // Stop the BoomBox for AnimationWindow
+            if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
+              BoomBox::LocalDJ->SOUND_MAIN.stop();
+            }
+            ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
+            delete this->ParticleGenerator.get();  // Delete the random particles generator
+
+            // Clean up memory occupied by the window
+            ITEM_HOLDER.getA()->close();
+            delete MainWindowVideo.get();
+
+            ANIMATION_INSTANCES = 0;
+            MainWindowThread->terminate();
+          } catch (std::exception E) {
+          }
+          break;
+          // This is where window closing process ends
+				}
+        if (Event->key.code == sf::Keyboard::P) { // && SpaceShipMainPlayer.getLife() > 0
           PausedParity++;
           BoomBox::WindowSoundEffect();
         }
 
       } else if (Event->type == sf::Event::TextEntered) {}
     }
+    ImGUIRenderer::IMGUI_Mutex.unlock(); // We lock the mutex for Imgui
     // Check for continuous key presses - if the game is not paused
     if (PausedParity % 2 == 0) {
       if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -161,12 +216,14 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
     }
 
     std::free(Event);
+    ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
     AnimationWindow* MyWindowVirt
         = dynamic_cast<AnimationWindow*>(ITEM_HOLDER.getC());  // Polymorphic conversion
     MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
                                                              MyWindowVirt);
     MyWindowVirt = NULL;
     delete MyWindowVirt;
+    ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex to allow the rendering of the other window
   }
 }
 void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
@@ -268,8 +325,9 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
       WINDOW->draw(PresskeyText);
       // Draw the rectangle prompt with the name of the player
 
-      // ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
-      // ImGuiRenderer->RenderImguiContents();
+
+      this->ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
+      this->ImGuiRenderer->RenderImguiContents();
 
       EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier
       EnemySpaceShip::LIFE_SUPPLIER = 0;          // Reset the enemy life supplier
@@ -297,7 +355,6 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
     GameOverText.setPosition(
         WWidth / 4, WHeight / 2 - 50);  // Prepare the entity again to be used as a game over text
   }
-
   WINDOW->display();
 }
 void MatthewsNamespace::AnimationWindow::RenderTextures(

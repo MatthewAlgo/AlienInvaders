@@ -19,14 +19,15 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 
 	// Display main Window and reset the IMGUI delta clock
 	// We need to initiate the IMGUI context
-	ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA()); 
-	ImGuiRenderer->getDeltaClock()->restart();
+	this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
+	this->ImGuiRenderer->getDeltaClock()->restart();
 
 	while (ITEM_HOLDER.getA()->isOpen()) {
 		sf::Event* Event = new sf::Event();
-		
+	
+
+		ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
-			
 			// Event handling for IMGUi
 			ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
 			
@@ -35,7 +36,9 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 				BoomBox::LocalDJ->SOUND_MAIN.stop();
 				BoomBox::LocalDJ->MainThemeSound.stop();
 				sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
-				// delete this->ParticleGenerator; // Delete the random particles generator
+				/// delete this->ParticleGenerator; // Delete the random particles generator
+
+				ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
 				ITEM_HOLDER.getA()->close(); // Deletes the animation window
 				exit(EXIT_SUCCESS);
 			}
@@ -83,6 +86,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
 					// delete this->ParticleGenerator; // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
+					ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
 
 					exit(EXIT_SUCCESS);
 				}
@@ -92,6 +96,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					break;
 			}
 		}
+		ImGUIRenderer::IMGUI_Mutex.unlock();
 		// Check For BoomBox Status
 		if ((BoomBox::IS_MUSIC_ENABLED == 1) && ((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
 			|| (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) && (AnimationWindow::ANIMATION_INSTANCES == 0)){
@@ -104,9 +109,11 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 		}
 		std::free(Event);
 
+		ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		MainWindowClass* MyWindowVirt = dynamic_cast<MainWindowClass*>(ITEM_HOLDER.getC()); // Polymorphic conversion
 		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), MyWindowVirt);
 		MyWindowVirt = NULL; delete MyWindowVirt;
+		ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
 	}
 }
 void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::MainWindowClass* C) {

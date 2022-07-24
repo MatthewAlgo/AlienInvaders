@@ -16,9 +16,11 @@ namespace MatthewsNamespace {
   protected:
     sf::RenderWindow* SFMLWindow;
     sf::Clock DeltaClock;
-    char* StringForInputText;  // = new char[256]
+    char StringForInputText[256];  // = new char[256]
 
   public:
+    // We define a mutex for the ImGUI thread to lock on
+    static inline sf::Mutex IMGUI_Mutex;
     // Constructors
     ImGUIRenderer(sf::RenderWindow* T);
     ~ImGUIRenderer() = default;

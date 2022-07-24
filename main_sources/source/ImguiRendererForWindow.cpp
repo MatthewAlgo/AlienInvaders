@@ -1,12 +1,11 @@
 #include "alieninvadersretro/ImguiRendererForWindow.h"
 
 MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
-  // Init the memory for the text input
-  StringForInputText = new char[256];
-
   // We define constructor functions here
   SFMLWindow = T;         // The pointer now points to the window passed as parameter
   ImGui::SFML::Init(*T);  // We initialize the window using the object pointed to
+  // Remove the char text from buffer 
+  strcpy(StringForInputText, "");
   DeltaClock.restart();
 
   // Imgui Rounded corners
@@ -64,12 +63,15 @@ MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
 void MatthewsNamespace::ImGUIRenderer::ToBeCalledAfterEventHandling(sf::Event* Ev) {
   ImGui::SFML::ProcessEvent(*SFMLWindow, *Ev);
 }
-void MatthewsNamespace::ImGUIRenderer::RenderImguiContents() { ImGui::SFML::Render(*SFMLWindow); }
+void MatthewsNamespace::ImGUIRenderer::RenderImguiContents() { 
+  ImGui::SFML::SetCurrentWindow(*SFMLWindow);
+  ImGui::SFML::Render(*SFMLWindow); }
 
 void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
     std::vector<std::string> VectorOfScores, std::string WindowName) {
-  // this->DeltaClock.restart(); // Restarts the delta clock upon drawing
+  this->DeltaClock.restart(); // Restarts the delta clock upon drawing
 
+  ImGui::SFML::SetCurrentWindow(*SFMLWindow);
   ImGui::SFML::Update(*SFMLWindow, this->DeltaClock.restart());
   // ImGui::ShowDemoWindow();  // Shows a demo window for debugging purposes
 
@@ -85,21 +87,20 @@ void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
     for (int n = 0; n < VectorOfScores.size(); n++)
       ImGui::Text("%04d: %s", n, VectorOfScores[n].c_str());
     ImGui::EndChild();
-
     // That was the first window
-
     ImGui::End();
   }
 }
 
 void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(std::string WindowName) {
+  ImGui::SFML::SetCurrentWindow(*SFMLWindow);
   ImGui::SFML::Update(*SFMLWindow, this->DeltaClock.restart());
   if (WindowName == "Animation Window") {
-    ImGui::SetNextWindowPos(ImVec2(350, 25));
-    ImGui::SetNextWindowSize(ImVec2(275, 50));
+    ImGui::SetNextWindowPos(ImVec2(350, 210));
+    ImGui::SetNextWindowSize(ImVec2(275, 60));
 
     ImGui::Begin("Please insert your name");
-    // ImGui::InputText("Name", getStringForInputText(), 256);  // Set buffer size to 256
+    ImGui::InputText("Name", getStringForInputText(), 30);  // Set buffer size to 30 characters maximum
     // We need to render the imgui screen right after or while the apparition of the End Game screen
     ImGui::End();
   }
