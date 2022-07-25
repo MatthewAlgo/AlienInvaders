@@ -26,6 +26,13 @@ CPMAddPackage(
   OPTIONS "FMT_INSTALL YES" # Create an installable target
 )
 
+# CSV_PARSER
+CPMAddPackage(
+  NAME csv-parser
+  GITHUB_REPOSITORY vincentlaucsb/csv-parser
+  GIT_TAG master
+)
+
 # # GLAD
 # CPMAddPackage(
 #   NAME glad
@@ -110,17 +117,17 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "al
 
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32 csv
   winmm locallibraries)
 
 endif (WIN32)
 
 if (UNIX AND NOT APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv)
 endif (UNIX AND NOT APPLE)
 
 if (APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv)
 endif (APPLE)
 
 target_include_directories(

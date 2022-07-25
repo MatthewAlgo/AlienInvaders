@@ -6,6 +6,8 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
+// INCLUDE CSV PARSER
+
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
 void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
 	sf::WindowHandle handle = ITEM_HOLDER.getA()->getSystemHandle(); // Use the handle with OS specific functions
@@ -20,7 +22,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 	// Display main Window and reset the IMGUI delta clock
 	// We need to initiate the IMGUI context
 	this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
-	this->ImGuiRenderer->getDeltaClock()->restart();
+	// this->ImGuiRenderer->getDeltaClock()->restart();
 
 	while (ITEM_HOLDER.getA()->isOpen()) {
 		sf::Event* Event = new sf::Event();
@@ -36,7 +38,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 				BoomBox::LocalDJ->SOUND_MAIN.stop();
 				BoomBox::LocalDJ->MainThemeSound.stop();
 				sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
-				/// delete this->ParticleGenerator; // Delete the random particles generator
+				delete this->ParticleGenerator.get(); // Delete the random particles generator
 
 				ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
 				ITEM_HOLDER.getA()->close(); // Deletes the animation window
@@ -84,7 +86,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					BoomBox::LocalDJ->SOUND_MAIN.stop();
 					BoomBox::LocalDJ->MainThemeSound.stop();
 					sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
-					// delete this->ParticleGenerator; // Delete the random particles generator
+					delete this->ParticleGenerator.get(); // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
 					ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
 
@@ -210,6 +212,22 @@ void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName)
 }
 
 std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::string FileName) {
+	
+	// CSVReader read("SampleCSVFile_2kb.csv");
+	// for(auto& row : read){
+	// 	// if(row["name"].is_str()){
+	// 	// 	row["name"].get<std::string>();
+	// 	// }
+
+	// 	for (CSVField& field: row) {
+  //       // By default, get<>() produces a std::string.
+  //       // A more efficient get<string_view>() is also available, where the resulting
+  //       // string_view is valid as long as the parent CSVRow is alive
+  //       std::cout << field.get<>() << "\n";
+  //   }
+
+	// }
+
 	std::vector<std::string> FileLines;
 	std::ifstream File(FileName);
 	if (File.is_open()) {
@@ -220,6 +238,8 @@ std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::
 		File.close();
 	}
 	return FileLines;
+
+
 }
 
 void MatthewsNamespace::MainWindowClass::ScoresSaverLocal(std::string FileName){

@@ -38,7 +38,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
 
   // Initialize the Imgui Renderer
   this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
-  this->ImGuiRenderer->getDeltaClock()->restart();
+  // this->ImGuiRenderer->getDeltaClock()->restart();
 
   // Welcome effect by the boombox
   BoomBox::WelcomeEffect();

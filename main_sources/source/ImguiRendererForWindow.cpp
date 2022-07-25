@@ -6,7 +6,6 @@ MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
   ImGui::SFML::Init(*T);  // We initialize the window using the object pointed to
   // Remove the char text from buffer 
   strcpy(StringForInputText, "");
-  DeltaClock.restart();
 
   // Imgui Rounded corners
   ImGui::GetStyle().WindowRounding = 10;  // <- Set this on init or use ImGui::PushStyleVar()
@@ -69,7 +68,6 @@ void MatthewsNamespace::ImGUIRenderer::RenderImguiContents() {
 
 void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
     std::vector<std::string> VectorOfScores, std::string WindowName) {
-  this->DeltaClock.restart(); // Restarts the delta clock upon drawing
 
   ImGui::SFML::SetCurrentWindow(*SFMLWindow);
   ImGui::SFML::Update(*SFMLWindow, this->DeltaClock.restart());
