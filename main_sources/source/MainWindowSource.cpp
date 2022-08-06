@@ -28,7 +28,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 		sf::Event* Event = new sf::Event();
 	
 
-		ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
+		// ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
 			// Event handling for IMGUi
 			ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
@@ -98,7 +98,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					break;
 			}
 		}
-		ImGUIRenderer::IMGUI_Mutex.unlock();
+		// ImGUIRenderer::IMGUI_Mutex.unlock();
 		// Check For BoomBox Status
 		if ((BoomBox::IS_MUSIC_ENABLED == 1) && ((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
 			|| (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) && (AnimationWindow::ANIMATION_INSTANCES == 0)){
@@ -191,6 +191,7 @@ void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::Ren
 
 }
 void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName){
+	PlayerInfoList.clear(); // Clear the vector
 	// Load the scores from the file
 	std::ifstream ScoresFile(FileName);
 	if (ScoresFile.is_open()) {
@@ -199,8 +200,13 @@ void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName)
 			// Now we need to split the line into the name and the score
 			std::stringstream ss(Line);
 			std::string Name, Score;
-			std::getline(ss, Name, ' ');
+			// Stores the first word, the name
+			std::getline(ss, Name, ' '); 
+			
+			// Gets to the second word, the score
 			std::getline(ss, Score, ' ');
+			std::getline(ss, Score, ' ');
+
 			// Now we need to convert the score to an integer
 			int ScoreInt = std::stoi(Score);
 			// Now we need to add the name and the score to the vector;
@@ -212,22 +218,6 @@ void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName)
 }
 
 std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::string FileName) {
-	
-	// CSVReader read("SampleCSVFile_2kb.csv");
-	// for(auto& row : read){
-	// 	// if(row["name"].is_str()){
-	// 	// 	row["name"].get<std::string>();
-	// 	// }
-
-	// 	for (CSVField& field: row) {
-  //       // By default, get<>() produces a std::string.
-  //       // A more efficient get<string_view>() is also available, where the resulting
-  //       // string_view is valid as long as the parent CSVRow is alive
-  //       std::cout << field.get<>() << "\n";
-  //   }
-
-	// }
-
 	std::vector<std::string> FileLines;
 	std::ifstream File(FileName);
 	if (File.is_open()) {
@@ -236,10 +226,10 @@ std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::
 			FileLines.push_back(Line);
 		}
 		File.close();
+	}else{
+		std::ofstream File(FileName);
 	}
 	return FileLines;
-
-
 }
 
 void MatthewsNamespace::MainWindowClass::ScoresSaverLocal(std::string FileName){

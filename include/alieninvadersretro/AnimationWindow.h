@@ -16,6 +16,7 @@
 #  include "StructuresAndOtherFunctions.h"
 #  include "VirtualWindow.h"
 #  include "ImguiRendererForWindow.h"
+#  include "MainWindowHeader.h"
 #  pragma endregion INCLUDES
 
 #  pragma region ANIMATION_WINDOW

@@ -110,6 +110,12 @@
         "xstring": "cpp",
         "xtr1common": "cpp",
         "xtree": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "condition_variable": "cpp",
+        "future": "cpp",
+        "mutex": "cpp",
+        "stack": "cpp",
+        "typeindex": "cpp",
+        "valarray": "cpp"
     }
 }

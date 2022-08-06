@@ -1,11 +1,10 @@
 :: Batch to build Libraries
 
 :: cmake -S main_libraries -B build/main_libraries
-:: cmake --build build/main_libraries --config Debug
+:: cmake --build build/main_libraries --config Release
 
 :: Copy everything from res (Assuming we use VSCommunity)
-:: Xcopy /E /I .\res\* .\build\main_libraries\Debug\
-
+:: Xcopy /E /I .\res\* .\build\main_libraries\Release\
 
 :: Batch to build Executable
 

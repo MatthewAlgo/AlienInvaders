@@ -37,10 +37,18 @@ namespace MatthewsNamespace {
     struct PlayerInfo {
       std::pair<std::string, int> PlayerNameAndScore;
     };
-    std::vector<PlayerInfo> PlayerInfoList;
-    std::vector<std::string> RawFileData;
     
-    MainWindowClass(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H){ RawFileData = this->RawFileReader("Scores.txt"); }; // Loads the Scores from file when the window is opened - this->ScoresLoaderLocal("Scores.txt");
+    static inline std::vector<PlayerInfo> PlayerInfoList; 
+    static void ScoresLoaderLocal(std::string FileName); // A function to load the best scores from a file
+    
+    static inline std::vector<std::string> RawFileData;
+    static std::vector<std::string> RawFileReader(std::string FileName); // A function to get the scores from the file
+  
+
+    MainWindowClass(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H){ 
+      ScoresLoaderLocal("Scores.txt");
+      RawFileData = this->RawFileReader("Scores.txt");
+    }; // Loads the Scores from file when the window is opened - this->ScoresLoaderLocal("Scores.txt");
     ~MainWindowClass() = default;  // Auto deallocate smart pointers
 
     void MainWindowThreadExecution(
@@ -51,10 +59,8 @@ namespace MatthewsNamespace {
         DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) override;
     
     
-    void ScoresLoaderLocal(std::string FileName); // A function to load the best scores from a file
     void ScoresSaverLocal(std::string FileName); // A function to save the best scores to a file
     int getBestScoreLocal(std::string FileName); // A function to get the best score from the file
-    std::vector<std::string> RawFileReader(std::string FileName); // A function to get the scores from the file
   };
 };  // namespace MatthewsNamespace
 
