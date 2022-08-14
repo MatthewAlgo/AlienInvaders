@@ -43,7 +43,8 @@ namespace MatthewsNamespace {
     
     static inline std::vector<std::string> RawFileData;
     static std::vector<std::string> RawFileReader(std::string FileName); // A function to get the scores from the file
-  
+    static void sortScoresVector(std::vector<PlayerInfo>& ScoresVector); // A function to sort the scores vector
+    static void scoresSaverLocal(std::string FileName); // A function to save the scores to a file
 
     MainWindowClass(const std::string TITLE, int W, int H) : VirtualWindowClass(TITLE, W, H){ 
       ScoresLoaderLocal("Scores.txt");

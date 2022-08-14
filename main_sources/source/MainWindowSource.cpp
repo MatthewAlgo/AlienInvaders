@@ -28,11 +28,12 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 		sf::Event* Event = new sf::Event();
 	
 
-		// ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
+		ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
 			// Event handling for IMGUi
 			ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
-			
+
+
 			if (Event->type == sf::Event::Closed) {
 				BoomBox::IS_MUSIC_ENABLED = false; // Disable music
 				BoomBox::LocalDJ->SOUND_MAIN.stop();
@@ -89,7 +90,6 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					delete this->ParticleGenerator.get(); // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
 					ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-
 					exit(EXIT_SUCCESS);
 				}
 			}
@@ -98,7 +98,8 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					break;
 			}
 		}
-		// ImGUIRenderer::IMGUI_Mutex.unlock();
+		
+		
 		// Check For BoomBox Status
 		if ((BoomBox::IS_MUSIC_ENABLED == 1) && ((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
 			|| (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) && (AnimationWindow::ANIMATION_INSTANCES == 0)){
@@ -110,12 +111,13 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 			}
 		}
 		std::free(Event);
+		ImGUIRenderer::IMGUI_Mutex.unlock();
 
-		ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
+		// ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		MainWindowClass* MyWindowVirt = dynamic_cast<MainWindowClass*>(ITEM_HOLDER.getC()); // Polymorphic conversion
 		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), MyWindowVirt);
 		MyWindowVirt = NULL; delete MyWindowVirt;
-		ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
+		// ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
 	}
 }
 void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::MainWindowClass* C) {
@@ -139,8 +141,10 @@ void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* 
 
 	// Draw IMGUI Elements
 	std::vector<std::string> ScoresVector = C->RawFileData;
+	ImGUIRenderer::IMGUI_Mutex.lock();
 	ImGuiRenderer->ToBeCalledForDrawingWindowElements(ScoresVector, "Main Window");
 	ImGuiRenderer->RenderImguiContents();
+	ImGUIRenderer::IMGUI_Mutex.unlock();
 	WINDOW->display();
 }
 void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
@@ -232,11 +236,21 @@ std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::
 	return FileLines;
 }
 
-void MatthewsNamespace::MainWindowClass::ScoresSaverLocal(std::string FileName){
+void MatthewsNamespace::MainWindowClass::sortScoresVector(std::vector<MatthewsNamespace::MainWindowClass::PlayerInfo>& ScoresVector) {
+	// Sort the vector
+	std::sort(ScoresVector.begin(), ScoresVector.end(), [](const MatthewsNamespace::MainWindowClass::PlayerInfo& a, const MatthewsNamespace::MainWindowClass::PlayerInfo& b) {
+		return a.PlayerNameAndScore.second > b.PlayerNameAndScore.second;
+	});
+}
+
+void MatthewsNamespace::MainWindowClass::scoresSaverLocal(std::string FileName){
 	// Save the scores to the file
 	std::ofstream ScoresFile(FileName);
 	if (ScoresFile.is_open()) {
-		// Write the Current Best Score
+		// Write the vector to the file
+		for (auto& i : PlayerInfoList) {
+			ScoresFile << i.PlayerNameAndScore.first << " --- " << i.PlayerNameAndScore.second << std::endl;
+		}
 	}
 }
 
