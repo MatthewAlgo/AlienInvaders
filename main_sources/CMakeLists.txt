@@ -33,6 +33,14 @@ CPMAddPackage(
   GIT_TAG master
 )
 
+# BOOST/ASIO
+CPMAddPackage(
+  NAME asio
+  GITHUB_REPOSITORY boostorg/asio
+  GIT_TAG boost-1.80.0
+  OPTIONS "ASIO_BUILD_EXAMPLES NO" "ASIO_BUILD_TESTS NO" "ASIO_ENABLE_INSTALL YES"
+)
+
 # # GLAD
 # CPMAddPackage(
 #   NAME glad
@@ -118,16 +126,16 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "al
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32 csv
-  winmm locallibraries)
+  winmm locallibraries boost_system)
 
 endif (WIN32)
 
 if (UNIX AND NOT APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv boost_system)
 endif (UNIX AND NOT APPLE)
 
 if (APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network locallibraries ${OPENGL_LIBRARIES} csv boost_system)
 endif (APPLE)
 
 target_include_directories(

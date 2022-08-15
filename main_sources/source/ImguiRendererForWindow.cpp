@@ -115,6 +115,10 @@ char* MatthewsNamespace::ImGUIRenderer::getStringForInputText() {
   return this->StringForInputText;
 }  // StringForInputText
 
+void MatthewsNamespace::ImGUIRenderer::setStringForInputText(char* String) {
+  strcpy(this->StringForInputText, String);
+}
+
 // Setters
 void MatthewsNamespace::ImGUIRenderer::setDeltaClock(sf::Clock Delta) { DeltaClock = Delta; }
 void MatthewsNamespace::ImGUIRenderer::setSFMLWindow(sf::RenderWindow* T) { SFMLWindow = T; }

@@ -44,6 +44,7 @@ namespace MatthewsNamespace {
     // Setters
     void setDeltaClock(sf::Clock Delta);
     void setSFMLWindow(sf::RenderWindow* T);
+    void setStringForInputText(char* T);
   };
 }  // namespace MatthewsNamespace
 

@@ -38,7 +38,9 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
 
   // Initialize the Imgui Renderer
   this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
-  // this->ImGuiRenderer->getDeltaClock()->restart();
+  ImGui::CreateContext();
+  ImGuiIO &io = ImGui::GetIO(); // Add imgui Hooks
+
 
   // Welcome effect by the boombox
   BoomBox::WelcomeEffect();
@@ -47,14 +49,12 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
   while (ITEM_HOLDER.getA()->isOpen()) {
     sf::Event* Event = new sf::Event();
 
-    // if(!(Player1Score % 10'000 == 0 && Player1Score != 0)) // Game over screen
-    //   ImGUIRenderer::IMGUI_Mutex.unlock();
-    // else
     ImGUIRenderer::IMGUI_Mutex.lock();
     
     while (ITEM_HOLDER.getA()->pollEvent(*Event)) {
       // Event Handling for imgui
-      this->ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
+      if(*SpaceShipMainPlayer.getLife() <= 0) // If the player is dead, we catch imgui events
+        this->ImGuiRenderer->ToBeCalledAfterEventHandling(Event);
 
       if (Event->type == sf::Event::Closed) {
         try {
@@ -75,7 +75,6 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           }
           BoomBox::WindowSoundEffect();
           if (BoomBox::IS_MUSIC_ENABLED) {
-            // BoomBox::StartMainThemeSong();
             BoomBox::getMainTheme()->play();
           }
           // Stop the BoomBox for AnimationWindow
@@ -89,9 +88,10 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           ITEM_HOLDER.getA()->close();
           delete MainWindowVideo.get();
           ANIMATION_INSTANCES = 0;
-          ImGUIRenderer::IMGUI_Mutex.unlock();  
+          ImGUIRenderer::IMGUI_Mutex.unlock();
+         
           ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-          
+          ImGui::DestroyContext();
           MainWindowThread->terminate();
           
         } catch (std::exception E) {
@@ -133,8 +133,9 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             delete MainWindowVideo.get();
             ANIMATION_INSTANCES = 0;
             ImGUIRenderer::IMGUI_Mutex.unlock();
-            ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());  
             
+            ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
+            ImGui::DestroyContext();
             MainWindowThread->terminate();
             
           } catch (std::exception E) {
@@ -198,9 +199,10 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
               ITEM_HOLDER.getA()->close();
               delete MainWindowVideo.get();
               ANIMATION_INSTANCES = 0;
-              ImGUIRenderer::IMGUI_Mutex.unlock();  
-              ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-              
+              ImGUIRenderer::IMGUI_Mutex.unlock(); 
+               
+              ImGui::SFML::Shutdown(*ITEM_HOLDER.getA()); 
+              ImGui::DestroyContext();
               MainWindowThread->terminate();
               
             } catch (std::exception E) {
@@ -366,8 +368,10 @@ void MatthewsNamespace::AnimationWindow::DrawInsideMainWindow(
       // Draw the rectangle prompt with the name of the player
 
       ImGUIRenderer::IMGUI_Mutex.lock();
+      
       this->ImGuiRenderer->ToBeCalledForDrawingWindowElements("Animation Window");
       this->ImGuiRenderer->RenderImguiContents();
+      
       ImGUIRenderer::IMGUI_Mutex.unlock();
 
       EnemySpaceShipBullet::DAMAGE_SUPPLIER = 0;  // Reset the enemy damage supplier

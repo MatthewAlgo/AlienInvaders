@@ -6,6 +6,7 @@
 #  include <SFML/System.hpp>
 #  include <deque>
 #  include <vector>
+#  include <memory>
 
 // #  include "EnemySpaceShip.h" -> Careful at circular dependencies!
 #  include "SpaceShipBullet.h"

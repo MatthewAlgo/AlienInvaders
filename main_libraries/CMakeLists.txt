@@ -68,6 +68,15 @@ CPMAddPackage(
   GITHUB_REPOSITORY SFML/SFML
   GIT_TAG 2.5.x
 )
+
+# BOOST/ASIO
+CPMAddPackage(
+  NAME asio
+  GITHUB_REPOSITORY boostorg/asio
+  GIT_TAG boost-1.80.0
+  OPTIONS "ASIO_BUILD_EXAMPLES NO" "ASIO_BUILD_TESTS NO" "ASIO_ENABLE_INSTALL YES"
+)
+
 set_target_properties(sfml-system PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-network PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
@@ -97,8 +106,8 @@ find_package(OpenGL REQUIRED)
 
 # ---- Create standalone executable ----
 
-file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui-sfml/*.cpp)
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui-sfml/*.h")
+file(GLOB sources CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/imgui/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/imgui-sfml/*.cpp ${CMAKE_CURRENT_SOURCE_DIR}/asio-net/*.cpp )
+file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../imgui-sfml/*.h" "${CMAKE_CURRENT_SOURCE_DIR}/../asio-net/*.h")
 
 # add_library(${PROJECT_NAME} SHARED ${sources} ${headers})
 add_library(${PROJECT_NAME} STATIC ${sources} ${headers})
@@ -108,16 +117,16 @@ set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17 OUTPUT_NAME "lo
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network opengl32
-  winmm 
+  winmm boost_system
 )
 endif (WIN32)
 
 if (UNIX AND NOT APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+target_link_libraries(${PROJECT_NAME} PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network boost_system)
 endif (UNIX AND NOT APPLE)
 
 if (APPLE)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network boost_system)
 endif (APPLE)
 
 target_include_directories(
