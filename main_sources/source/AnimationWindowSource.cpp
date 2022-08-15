@@ -38,8 +38,8 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
 
   // Initialize the Imgui Renderer
   this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
-  ImGui::CreateContext();
-  ImGuiIO &io = ImGui::GetIO(); // Add imgui Hooks
+  // ImGui::CreateContext();
+  // ImGuiIO &io = ImGui::GetIO(); // Add imgui Hooks
 
 
   // Welcome effect by the boombox
@@ -91,7 +91,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
           ImGUIRenderer::IMGUI_Mutex.unlock();
          
           ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-          ImGui::DestroyContext();
+          // ImGui::DestroyContext();
           MainWindowThread->terminate();
           
         } catch (std::exception E) {
@@ -135,7 +135,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
             ImGUIRenderer::IMGUI_Mutex.unlock();
             
             ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-            ImGui::DestroyContext();
+            // ImGui::DestroyContext();
             MainWindowThread->terminate();
             
           } catch (std::exception E) {
@@ -202,7 +202,7 @@ void MatthewsNamespace::AnimationWindow::MainWindowThreadExecution(
               ImGUIRenderer::IMGUI_Mutex.unlock(); 
                
               ImGui::SFML::Shutdown(*ITEM_HOLDER.getA()); 
-              ImGui::DestroyContext();
+              // ImGui::DestroyContext();
               MainWindowThread->terminate();
               
             } catch (std::exception E) {

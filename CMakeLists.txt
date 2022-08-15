@@ -124,16 +124,16 @@ target_compile_options(alieninvaderslibrary PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,
 # Link dependencies
 if (WIN32)
 find_package(SFML REQUIRED COMPONENTS graphics window system audio network)
-target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network boost_system)
+target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (WIN32)
 
 
 if (UNIX AND NOT APPLE)
-target_link_libraries(alieninvaderslibrary PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network boost_system)
+target_link_libraries(alieninvaderslibrary PRIVATE X11 sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (UNIX AND NOT APPLE)
 
 if (APPLE)
-target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network boost_system)
+target_link_libraries(alieninvaderslibrary PRIVATE sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
 endif (APPLE)
 
 

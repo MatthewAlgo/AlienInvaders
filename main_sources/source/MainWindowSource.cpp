@@ -23,7 +23,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 	// We need to initiate the IMGUI context
 	this->ImGuiRenderer = std::make_unique<ImGUIRenderer>(ITEM_HOLDER.getA());
 	// Create an IMgui context
-	ImGui::CreateContext();
+	// ImGui::CreateContext();
 	// this->ImGuiRenderer->getDeltaClock()->restart();
 
 	while (ITEM_HOLDER.getA()->isOpen()) {
@@ -44,7 +44,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 				delete this->ParticleGenerator.get(); // Delete the random particles generator
 
 				ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-				ImGui::DestroyContext();
+				// ImGui::DestroyContext();
 				ITEM_HOLDER.getA()->close(); // Deletes the animation window
 				exit(EXIT_SUCCESS);
 			}
@@ -93,7 +93,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					delete this->ParticleGenerator.get(); // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
 					ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-					ImGui::DestroyContext();
+					// ImGui::DestroyContext();
 					exit(EXIT_SUCCESS);
 				}
 			}
