@@ -19,7 +19,6 @@
 #include <boost/asio/ts/buffer.hpp>
 #include <boost/asio/ts/internet.hpp>
 
-
 #include "asio-net/asioheader.hpp"
 
 using boost::asio::ip::tcp;
