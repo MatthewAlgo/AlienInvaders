@@ -33,14 +33,6 @@ CPMAddPackage(
   GIT_TAG master
 )
 
-# BOOST/ASIO
-CPMAddPackage(
-  NAME asio
-  GITHUB_REPOSITORY boostorg/asio
-  GIT_TAG boost-1.80.0
-  OPTIONS "ASIO_BUILD_EXAMPLES NO" "ASIO_BUILD_TESTS NO" "ASIO_ENABLE_INSTALL YES"
-)
-
 # # GLAD
 # CPMAddPackage(
 #   NAME glad
@@ -90,19 +82,6 @@ set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQU
 set_target_properties(sfml-window PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 
-# CPMAddPackage(
-#   NAME imgui
-#   GITHUB_REPOSITORY Pesc0/imgui-cmake
-#   GIT_TAG master
-# )
-
-# CPMAddPackage(
-#   NAME imgui-sfml
-#   GITHUB_REPOSITORY eliasdaler/imgui-sfml
-#   OPTION "IMGUI_SFML_BUILD_EXAMPLES OFF" "IMGUI_SFML_BUILD_TESTS OFF" "SFML_DIR ${SFML_DIR}"
-#   GIT_TAG master
-# )
-
 
 CPMAddPackage(NAME MainLibraries SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/../main_libraries)
 
@@ -142,5 +121,4 @@ target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../include>
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
-
 GroupSourcesByFolder(${PROJECT_NAME}) # Groups sources by folder

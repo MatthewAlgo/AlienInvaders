@@ -68,15 +68,6 @@ CPMAddPackage(
   GITHUB_REPOSITORY SFML/SFML
   GIT_TAG 2.5.x
 )
-
-# BOOST/ASIO
-CPMAddPackage(
-  NAME asio
-  GITHUB_REPOSITORY boostorg/asio
-  GIT_TAG boost-1.80.0
-  OPTIONS "ASIO_BUILD_EXAMPLES NO" "ASIO_BUILD_TESTS NO" "ASIO_ENABLE_INSTALL YES"
-)
-
 set_target_properties(sfml-system PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-network PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
 set_target_properties(sfml-graphics PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRED YES CXX_EXTENSIONS NO)
@@ -87,20 +78,6 @@ set_target_properties(sfml-audio PROPERTIES CXX_STANDARD 98 CXX_STANDARD_REQUIRE
 
 find_package(OpenGL REQUIRED)
 # find_package(SFML REQUIRED) # We don't need to find SFML as it is already located after CPM Call
-
-# CPMAddPackage(
-#   NAME imgui
-#   GITHUB_REPOSITORY Pesc0/imgui-cmake
-#   GIT_TAG master
-# )
-
-# CPMAddPackage(
-#   NAME imgui-sfml
-#   GITHUB_REPOSITORY eliasdaler/imgui-sfml
-#   OPTION "IMGUI_SFML_BUILD_EXAMPLES OFF" "IMGUI_SFML_BUILD_TESTS OFF" "SFML_DIR ${SFML_DIR}"
-#   GIT_TAG master
-# )
-
 
 # CPMAddPackage(NAME AlienInvadersRetro SOURCE_DIR ${CMAKE_CURRENT_LIST_DIR}/..)
 
@@ -132,6 +109,9 @@ endif (APPLE)
 target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/../include>
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
+  PRIVATE "${boost_asio_SOURCE_DIR}/include"
 )
+
+
 
 GroupSourcesByFolder(${PROJECT_NAME}) # Groups sources by folder
