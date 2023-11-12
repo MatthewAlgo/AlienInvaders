@@ -21,8 +21,8 @@
 namespace fs = std::filesystem;
 
 #  pragma region ANIMATION_WINDOW
-namespace MatthewsNamespace {
-  class BoomBox : public virtual MatthewsNamespace::VirtualWindowClass {
+namespace GameNamespace {
+  class BoomBox : public virtual GameNamespace::VirtualWindowClass {
   private:
     // Nothing here for now
   protected:
@@ -80,7 +80,7 @@ namespace MatthewsNamespace {
     // Render WAV sine wave inside the BoomBox
     void RenderLinesInCurrentFrame(sf::RenderWindow* BoomBoxWindow, int precision);
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 #  pragma endregion ANIMATION_WINDOW
 
 #endif

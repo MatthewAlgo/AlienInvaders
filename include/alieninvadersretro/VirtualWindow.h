@@ -14,7 +14,7 @@
 #  pragma endregion INCLUDES
 
 #  pragma region VIRTUAL_WINDOW
-namespace MatthewsNamespace {
+namespace GameNamespace {
   class VirtualWindowClass {
   protected:
     struct ImageToBeDrawn {
@@ -32,7 +32,7 @@ namespace MatthewsNamespace {
     std::unique_ptr<sf::Thread> MainWindowThread;
     std::unique_ptr<sf::VideoMode> MainWindowVideo;
 
-    std::unique_ptr<MatthewsNamespace::RandomParticlesGenerator> ParticleGenerator;
+    std::unique_ptr<GameNamespace::RandomParticlesGenerator> ParticleGenerator;
 
   public:
     VirtualWindowClass(const std::string TITLE, int W, int H)
@@ -40,7 +40,7 @@ namespace MatthewsNamespace {
           MainWindowVideo(new sf::VideoMode(W, H)),
           WWidth(static_cast<int>(W)),
           WHeight(static_cast<int>(H)),
-          ParticleGenerator(new MatthewsNamespace::RandomParticlesGenerator()) {
+          ParticleGenerator(new GameNamespace::RandomParticlesGenerator()) {
       // MainWindowThread = new
       // sf::Thread(std::bind(&MainWindowClass::MainWindowThreadExecution,this, *TripleHolder));
 
@@ -70,7 +70,7 @@ namespace MatthewsNamespace {
                                       VirtualWindowClass* C);
     virtual void RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER);
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 #  pragma endregion VIRTUAL_WINDOW
 
 #endif

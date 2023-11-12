@@ -11,7 +11,7 @@
 #include <vector>
 
 #pragma region LibraryFuncs
-namespace MatthewsNamespace {
+namespace GameNamespace {
   class ImGUIRenderer {
   protected:
     sf::RenderWindow* SFMLWindow;
@@ -46,6 +46,6 @@ namespace MatthewsNamespace {
     void setSFMLWindow(sf::RenderWindow* T);
     void setStringForInputText(char* T);
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 
 #pragma endregion LibraryFuncs

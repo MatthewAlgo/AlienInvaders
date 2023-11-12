@@ -21,8 +21,12 @@
 #  define U_P std::unique_ptr
 
 #  pragma region CLASS_REGION
-namespace MatthewsNamespace {
-  class MainWindowClass : public virtual MatthewsNamespace::VirtualWindowClass {
+namespace sf {
+  class RenderWindow;
+}
+
+namespace GameNamespace {
+  class MainWindowClass : public virtual GameNamespace::VirtualWindowClass {
   private:
     sf::Font GlobalWindowFont;
     sf::Text GreetingText, TextBTN1, TextBTN2;
@@ -37,10 +41,9 @@ namespace MatthewsNamespace {
     struct PlayerInfo {
       std::pair<std::string, int> PlayerNameAndScore;
     };
-    
     static inline std::vector<PlayerInfo> PlayerInfoList; 
-    static void ScoresLoaderLocal(std::string FileName); // A function to load the best scores from a file
     
+    static void ScoresLoaderLocal(std::string FileName); // A function to load the best scores from a file
     static inline std::vector<std::string> RawFileData;
     static std::vector<std::string> RawFileReader(std::string FileName); // A function to get the scores from the file
     static void sortScoresVector(std::vector<PlayerInfo>& ScoresVector); // A function to sort the scores vector
@@ -63,7 +66,7 @@ namespace MatthewsNamespace {
     void ScoresSaverLocal(std::string FileName); // A function to save the best scores to a file
     int getBestScoreLocal(std::string FileName); // A function to get the best score from the file
   };
-};  // namespace MatthewsNamespace
+};  // namespace GameNamespace
 
 #  pragma endregion CLASS_REGION
 

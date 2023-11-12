@@ -4,16 +4,15 @@
 #include "alieninvadersretro/BoomBox.h"
 #include "alieninvadersretro/MainWindowHeader.h"
 #include "alieninvadersretro/PlayerStatsAndScoresWindow.h"
+#include "alieninvadersretro/Player.h"
 
 #ifdef __linux__
 #  include <X11/Xlib.h>
 #endif
 
-// TODO: Solve Linux issue: alieninvadersretro: /home/matthewalgo/VSCode/AlienInvadersTest/main_libraries/imgui/imgui.cpp:3843: ImGuiIO& ImGui::GetIO(): Assertion `GImGui != __null && "No current context. Did you call ImGui::CreateContext() and ImGui::SetCurrentContext() ?"' failed.
-// fish: Job 1, './alieninvadersretro q' terminated by signal SIGABRT (Abort) + Other windows freeze when animation window is closed 
-
-// Late TODO: Implement design pattern: singleton
-// Late TODO: Add a networking library and start working on a multiplayer network component 
+namespace GameNamespace {
+  class MainWindowClass;
+}
 
 // C++17 Application -> Used the filesystem header from standard library
 int main() {
@@ -25,12 +24,17 @@ int main() {
   XInitThreads(); // Calls the Thread Initialization for Linux
 #endif
 
-  /// BETA area
-  /// Nothing Here for now :)
+  GameNamespace::MainWindowClass* MyMainWindow = new GameNamespace::MainWindowClass(
+      "AlienInvasion - Main Menu", 1000, 500);
 
-  MatthewsNamespace::MainWindowClass* MyMainWindow;
-  MyMainWindow = new MatthewsNamespace::MainWindowClass("AlienInvasion - Main Menu", 1000, 500);
-  MatthewsNamespace::BoomBox::INIT_BOOMBOX_MAIN();
+  // Start a thread with a qt5 player selector window
+  GameNamespace::INIT_PLAYER_STATS_AND_SCORES_WINDOW();
+  // Start a thread with a qt5 player selector window
+  GameNamespace::AnimationWindow::INIT_ANIMATION_WINDOW();
+
+  
+  // Eventually start a window that is capable of adding players to the match
+  GameNamespace::BoomBox::INIT_BOOMBOX_MAIN();
 
   std::cin.get();
   return 0;

@@ -8,7 +8,7 @@
 #  include <vector>
 
 #  pragma region RANDOM_PG_CLASS
-namespace MatthewsNamespace {
+namespace GameNamespace {
   class RandomParticlesGenerator {
   private:
     struct WhiteParticle {
@@ -58,15 +58,11 @@ namespace MatthewsNamespace {
     void ClearMemory(sf::RenderWindow* X) {
       for (int i{}; i < VectorOfParticles.size(); ++i) {
         if (VectorOfParticles.at(i)->y > X->getSize().y) {
-          // delete VectorOfParticles.at(i)->Texture;
-          // WhiteParticle* it = VectorOfParticles.at(i);
-          // delete it;
-          // it = nullptr;
           VectorOfParticles.erase(VectorOfParticles.begin() + i);
         }
       }
     }
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 #  pragma endregion RANDOM_PG_CLASS
 #endif

@@ -11,8 +11,8 @@
 #  include <optional>
 
 #  include "VirtualWindow.h"
-namespace MatthewsNamespace {
-  class PlayerStats : public virtual MatthewsNamespace::VirtualWindowClass {
+namespace GameNamespace {
+  class PlayerStats : public virtual VirtualWindowClass {
   public:
     PlayerStats(const PlayerStats&) = delete;
     PlayerStats(const std::string Title, int W, int H) : VirtualWindowClass(Title, W, H) {}
@@ -25,6 +25,6 @@ namespace MatthewsNamespace {
     void RenderTextures(
         DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) override;
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 
 #endif

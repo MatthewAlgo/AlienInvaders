@@ -6,7 +6,7 @@
 #include "alieninvadersretro/VirtualWindow.h"
 
 #pragma region VIRTCLASS_FUNC_IMPLEMENTATIONS
-void MatthewsNamespace::VirtualWindowClass::MainWindowThreadExecution(
+void GameNamespace::VirtualWindowClass::MainWindowThreadExecution(
     TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
   sf::WindowHandle handle
       = ITEM_HOLDER.getA()->getSystemHandle();  // Use the handle with OS specific functions
@@ -44,12 +44,12 @@ void MatthewsNamespace::VirtualWindowClass::MainWindowThreadExecution(
     }
 
     std::free(Event);
-    MatthewsNamespace::VirtualWindowClass::DrawInsideMainWindow(
+    GameNamespace::VirtualWindowClass::DrawInsideMainWindow(
         ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), ITEM_HOLDER.getC());
   }
 }
-void MatthewsNamespace::VirtualWindowClass::DrawInsideMainWindow(
-    sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::VirtualWindowClass* C) {
+void GameNamespace::VirtualWindowClass::DrawInsideMainWindow(
+    sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, GameNamespace::VirtualWindowClass* C) {
   WINDOW->clear(sf::Color::Red);
   WINDOW->draw(BackGround->SPRITE);
 
@@ -63,7 +63,7 @@ void MatthewsNamespace::VirtualWindowClass::DrawInsideMainWindow(
   // WINDOW->draw(GreetingText);
   WINDOW->display();
 }
-void MatthewsNamespace::VirtualWindowClass::RenderTextures(
+void GameNamespace::VirtualWindowClass::RenderTextures(
     DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
   // Inside a separate thread -> Background
   BackGround = std::make_unique<ImageToBeDrawn>();

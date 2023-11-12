@@ -2,8 +2,6 @@
 #ifndef STRUCTURES_HEADER
 #  define STRUCTURES_HEADER
 
-#  include <SFML/Network.hpp>
-
 #  pragma region STRUCURES_DEF_REGION
 template <typename A = void, typename B = void, typename C = void> struct TripleItemHolder {
 private:

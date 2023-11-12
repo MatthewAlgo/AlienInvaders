@@ -1,0 +1,44 @@
+﻿  imgui-SFML.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui-sfml\imgui-SFML.cpp(1,10): fatal  error C1083: Cannot open include file: 'imgui-sfml/imgui-SFML.h': No such file or directory
+  binary_to_compressed_c.cpp
+  imgui.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui.cpp(826,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_demo.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_demo.cpp(79,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_draw.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_draw.cpp(29,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_impl_opengl3.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_impl_opengl3.cpp(94,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_stdlib.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_stdlib.cpp(7,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_tables.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_tables.cpp(191,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  imgui_widgets.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui\imgui_widgets.cpp(35,10): fatal  error C1083: Cannot open include file: 'imgui/imgui.h': No such file or directory
+  AnimationWindowSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/AnimationWindow.h': No such file or directory
+  BoomBoxSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/BoomBox.h': No such file or directory
+  Constants.cpp
+  Controls.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\Controls.cpp(4,10): fatal  error C1083: Cannot open include file: 'Controls.h': No such file or directory
+  EnemySpaceShipSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/EnemySpaceShip.h': No such file or directory
+  ImguiRendererForWindow.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\ImguiRendererForWindow.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/ImguiRendererForWindow.h': No such file or directory
+  MainThread.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainThread.cpp(3,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/AnimationWindow.h': No such file or directory
+  MainWindowSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/MainWindowHeader.h': No such file or directory
+  PlayerStatsAndScoresWindow.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\PlayerStatsAndScoresWindow.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/PlayerStatsAndScoresWindow.h': No such file or directory
+  SpaceShipSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/AnimationWindow.h': No such file or directory
+  VirtualBullet.cpp
+  Compiling...
+  VirtualEntity.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/VirtualEntity.h': No such file or directory
+  VirtualSpaceShip.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(1,10): fatal  error C1083: Cannot open include file: 'alieninvadersretro/VirtualSpaceShip.h': No such file or directory
+  VirtualWindowSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualWindowSource.cpp(3,10): fatal  error C1083: Cannot open include file: 'SFML/Graphics.hpp': No such file or directory

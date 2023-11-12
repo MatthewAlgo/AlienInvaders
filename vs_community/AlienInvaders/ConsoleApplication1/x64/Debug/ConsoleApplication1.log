@@ -1,0 +1,553 @@
+﻿  imgui-SFML.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui-sfml\imgui-SFML.cpp(559,67): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_libraries\imgui-sfml\imgui-SFML.cpp(559,48): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  AnimationWindowSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(46,10): error C3668: 'GameNamespace::SpaceShip::setMainWindowSize': method with override specifier 'override' did not override any base class methods
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(48,12): error C2555: 'GameNamespace::SpaceShip::getLife': overriding virtual function return type differs and is not covariant from 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(65,19): message : see declaration of 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(130,15): error C2065: 'ANIMATION_INSTANCES': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(156,56): warning C4244: '=': conversion from '__int64' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(200,17): error C2065: 'ANIMATION_INSTANCES': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(244,41): warning C4244: 'argument': conversion from '__int64' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(271,37): error C2511: 'GameNamespace::AnimationWindow *GameNamespace::AnimationWindow::GetInstance(const std::string &,int,int)': overloaded member function not found in 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(24,9): message : see declaration of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(298,43): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(308,35): error C2039: 'setMainWindowSize': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(318,48): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(317,56): warning C4244: 'argument': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(408,59): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(408,39): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(414,35): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(414,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(424,38): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(424,33): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(427,25): error C2039: 'getSpaceShipTexture': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(428,25): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(429,25): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(430,30): error C2039: 'getSpaceShipTexture': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(431,25): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(439,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(439,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(445,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(445,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(451,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(451,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(457,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(457,41): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(463,54): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\AnimationWindowSource.cpp(463,40): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  BoomBoxSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(117,36): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(117,31): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(119,70): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(118,70): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(122,35): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(122,30): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(124,69): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(123,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(129,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(135,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(135,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(145,58): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(145,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(152,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(152,44): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(239,43): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(262,17): warning C4244: 'initializing': conversion from 'sf::Uint64' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(267,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(275,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(274,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(277,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(276,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(298,17): warning C4244: 'initializing': conversion from 'sf::Uint64' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(303,29): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(313,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(312,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(315,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\BoomBoxSource.cpp(314,53): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Controls.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\Controls.cpp(4,10): fatal  error C1083: Cannot open include file: 'Controls.h': No such file or directory
+  EnemySpaceShipSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(16,11): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(20,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(21,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(21,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(22,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(26,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(27,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(27,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(28,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(31,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(32,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(32,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(33,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(37,31): error C2511: 'void GameNamespace::EnemySpaceShip::MoveUp(void)': overloaded member function not found in 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(41,31): error C2511: 'void GameNamespace::EnemySpaceShip::MoveDown(void)': overloaded member function not found in 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(45,31): error C2511: 'void GameNamespace::EnemySpaceShip::MoveLeft(void)': overloaded member function not found in 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(49,31): error C2511: 'void GameNamespace::EnemySpaceShip::MoveRight(void)': overloaded member function not found in 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(63,23): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(63,23): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(64,25): error C2039: 'scaleSpaceShipBullet': is not a member of 'GameNamespace::EnemySpaceShipBullet'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShipBullet.h(13,9): message : see declaration of 'GameNamespace::EnemySpaceShipBullet'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(75,9): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(80,9): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(81,23): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(101,9): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(102,9): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(102,36): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(103,9): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(104,9): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(106,22): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(144,9): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(145,9): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\EnemySpaceShipSource.cpp(146,23): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::EnemySpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\EnemySpaceShip.h(15,9): message : see declaration of 'GameNamespace::EnemySpaceShip'
+  ImguiRendererForWindow.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\ImguiRendererForWindow.cpp(8,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\ImguiRendererForWindow.cpp(119,3): error C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  MainThread.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(46,10): error C3668: 'GameNamespace::SpaceShip::setMainWindowSize': method with override specifier 'override' did not override any base class methods
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(48,12): error C2555: 'GameNamespace::SpaceShip::getLife': overriding virtual function return type differs and is not covariant from 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(65,19): message : see declaration of 'GameNamespace::VirtualEntity::getLife'
+  MainWindowSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(46,10): error C3668: 'GameNamespace::SpaceShip::setMainWindowSize': method with override specifier 'override' did not override any base class methods
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(48,12): error C2555: 'GameNamespace::SpaceShip::getLife': overriding virtual function return type differs and is not covariant from 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(65,19): message : see declaration of 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(59,27): error C2039: 'ANIMATION_INSTANCES': is not a member of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(24,9): message : see declaration of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(59,27): error C2065: 'ANIMATION_INSTANCES': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(64,44): error C2248: 'GameNamespace::AnimationWindow::AnimationWindow': cannot access protected member declared in class 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(48,5): message : see declaration of 'GameNamespace::AnimationWindow::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(24,9): message : see declaration of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(109,104): error C2039: 'ANIMATION_INSTANCES': is not a member of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(24,9): message : see declaration of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(109,104): error C2065: 'ANIMATION_INSTANCES': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(113,25): error C2039: 'ANIMATION_INSTANCES': is not a member of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\AnimationWindow.h(24,9): message : see declaration of 'GameNamespace::AnimationWindow'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(113,25): error C2065: 'ANIMATION_INSTANCES': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(165,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(165,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(171,52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(171,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(181,47): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(181,34): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(189,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(189,30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(197,46): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\MainWindowSource.cpp(197,30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  PlayerStatsAndScoresWindow.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  SpaceShipSource.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,57): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(44,51): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(45,91): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,77): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\RandomParticlesGenerator.h(55,49): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(46,10): error C3668: 'GameNamespace::SpaceShip::setMainWindowSize': method with override specifier 'override' did not override any base class methods
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(48,12): error C2555: 'GameNamespace::SpaceShip::getLife': overriding virtual function return type differs and is not covariant from 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(65,19): message : see declaration of 'GameNamespace::VirtualEntity::getLife'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(12,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(12,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(13,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(13,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(18,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(18,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(19,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(19,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(23,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(23,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(24,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(24,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(29,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(29,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(30,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(30,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(34,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(34,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(35,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(35,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(39,25): error C2664: 'void GameNamespace::VirtualEntity::setTexture(sf::Texture &)': cannot convert argument 1 from 'const char [17]' to 'sf::Texture &'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(52,18): message : see declaration of 'GameNamespace::VirtualEntity::setTexture'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(39,25): message : while trying to match the argument list '(const char [17])'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(40,45): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(40,39): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(69,13): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(71,26): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(74,14): error C2100: illegal indirection
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(74,44): error C2100: illegal indirection
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(74,37): error C2106: '-=': left operand must be l-value
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(75,17): error C2100: illegal indirection
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(110,19): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(110,56): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(110,67): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(111,5): error C2065: 'SpriteOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(111,32): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(111,39): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(115,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(116,17): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(119,27): error C2039: 'getSpaceShipTexture': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(119,59): error C2065: 'TextureOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(120,26): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(120,57): error C2065: 'SpriteOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(121,27): error C2509: 'getPosition': member function not declared in 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(124,19): error C2509: 'centerInWindow': member function not declared in 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(128,19): error C2039: 'scaleSpaceShip': is not a member of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\SpaceShip.h(16,9): message : see declaration of 'GameNamespace::SpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\SpaceShipSource.cpp(128,54): error C2065: 'SpriteOfEntity': undeclared identifier
+  VirtualBullet.cpp
+  VirtualEntity.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(14,55): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(14,48): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(18,43): error C2572: 'GameNamespace::VirtualEntity::MoveUp': redefinition of default argument: parameter 1
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(46,18): message : see declaration of 'GameNamespace::VirtualEntity::MoveUp'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(20,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(20,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(23,45): error C2572: 'GameNamespace::VirtualEntity::MoveDown': redefinition of default argument: parameter 1
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(47,18): message : see declaration of 'GameNamespace::VirtualEntity::MoveDown'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(25,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(25,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(28,45): error C2572: 'GameNamespace::VirtualEntity::MoveLeft': redefinition of default argument: parameter 1
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(48,18): message : see declaration of 'GameNamespace::VirtualEntity::MoveLeft'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(30,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(30,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(33,46): error C2572: 'GameNamespace::VirtualEntity::MoveRight': redefinition of default argument: parameter 1
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(49,18): message : see declaration of 'GameNamespace::VirtualEntity::MoveRight'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(35,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(35,35): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(42,23): error C2511: 'void GameNamespace::VirtualEntity::setTexture(std::string)': overloaded member function not found in 'GameNamespace::VirtualEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(23,9): message : see declaration of 'GameNamespace::VirtualEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(44,31): error C2597: illegal reference to non-static member 'GameNamespace::VirtualEntity::TextureOfEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(32,17): message : see declaration of 'GameNamespace::VirtualEntity::TextureOfEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(46,55): error C2065: 'SpriteOfSpaceShipBullet': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(52,23): error C2511: 'void GameNamespace::VirtualEntity::scaleEntity(double,double)': overloaded member function not found in 'GameNamespace::VirtualEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualEntity.h(23,9): message : see declaration of 'GameNamespace::VirtualEntity'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(56,39): error C2065: 'TextureOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(57,37): error C2065: 'SpriteOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(58,52): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualEntity.cpp(58,59): error C2065: 'POS': undeclared identifier
+  VirtualSpaceShip.cpp
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(38,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,44): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualBullet.h(43,37): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(4,21): error C2084: function 'GameNamespace::VirtualSpaceShip::VirtualSpaceShip(sf::Vector2f,sf::Texture)' already has a body
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(19,5): message : see previous definition of '{ctor}'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(5,9): error C2614: 'GameNamespace::VirtualSpaceShip': illegal member initialization: 'WinSize' is not a base or member
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(5,30): error C2614: 'GameNamespace::VirtualSpaceShip': illegal member initialization: 'TextureOfEntity' is not a base or member
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(11,55): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(11,48): warning C4244: 'argument': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(14,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(15,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(15,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(16,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(19,26): error C2509: 'MoveUp': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(23,26): error C2509: 'MoveDown': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(27,26): error C2509: 'MoveLeft': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(31,26): error C2509: 'MoveRight': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(36,65): error C2614: 'GameNamespace::VirtualSpaceShip': illegal member initialization: 'WinSize' is not a base or member
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(38,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(39,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(39,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(40,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(44,5): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(45,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(45,32): error C2065: 'Explosion': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(46,5): error C2065: 'ExplosionSprite': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(52,26): error C2509: 'setTexture': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(53,26): error C2509: 'setSprite': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(54,26): error C2039: 'setSpaceShipPosition': is not a member of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(55,5): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(56,5): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(57,5): error C2065: 'SpriteOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(57,32): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(57,39): error C2065: 'POS': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(59,26): error C2509: 'setLife': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(60,26): error C2039: 'setMainWindowSize': is not a member of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(61,5): error C2065: 'WinSize': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(62,5): error C2065: 'WinSize': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(65,34): error C2039: 'getSpaceShipTexture': is not a member of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(65,66): error C2065: 'TextureOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(66,33): error C2039: 'getSpaceShipSprite': is not a member of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(66,64): error C2065: 'SpriteOfEntity': undeclared identifier
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(67,34): error C2509: 'getPosition': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(68,28): error C2509: 'getLife': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(70,26): error C2509: 'centerInWindow': member function not declared in 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(74,26): error C2039: 'scaleSpaceShip': is not a member of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\include\alieninvadersretro\VirtualSpaceShip.h(16,9): message : see declaration of 'GameNamespace::VirtualSpaceShip'
+C:\Users\Matthew\Documents\Projects\AlienInvaders\AlienInvaders\main_sources\source\VirtualSpaceShip.cpp(74,61): error C2065: 'SpriteOfEntity': undeclared identifier
+  Generating Code...

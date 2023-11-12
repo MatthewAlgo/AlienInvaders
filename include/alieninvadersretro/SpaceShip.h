@@ -10,52 +10,49 @@
 #  include "EnemySpaceShip.h"
 #  include "SpaceShipBullet.h"
 #  include "VirtualEntity.h"
+#  include "Constants.h"
 
 #  pragma region SPACESHIP_CLASS
-namespace MatthewsNamespace {
+namespace GameNamespace {
   class SpaceShip : public virtual VirtualEntity {
+  private:
+    
+    short Life = Constants::INITIAL_PLAYER_LIFE;
+    long long PlayerScore = Constants::INITIAL_PLAYER_SCORE;  // Player Score is set to zero
+
   public:
-    short Life = 50;
     // Each spaceship has a queue of bullets
     std::deque<std::shared_ptr<SpaceShipBullet>> BulletDeque;
-    
+    sf::Vector2f window_size_;
+
     // The spaceship moves according to the VirtualEntity
 
     // Constructors
     SpaceShip(sf::Vector2f WindowSize, sf::Texture Texture) {
       WinSize = WindowSize;
-      TextureOfEntity=Texture;
+      TextureOfEntity = Texture;
       VirtualEntity(WindowSize, Texture);
-
     }
-    SpaceShip(sf::Vector2f WindowSize) {
+    SpaceShip(sf::Vector2f WindowSize) : window_size_(WindowSize) {
       // Init the explosion if this constructor is called
-      WinSize=WindowSize;
+      WinSize = WindowSize;
       VirtualEntity(Winsize);
     }
-    SpaceShip() : VirtualEntity(){}
+
+    SpaceShip() : VirtualEntity() {}
     ~SpaceShip() = default;
 
-    void setTexture(sf::Texture& texture) override;
-    void setSprite(sf::Sprite& sprite) override;
-    void setSpaceShipPosition(double X, double Y) override;
-    void setLife(short L) override;
-    void setMainWindowSize(int X, int Y) override;
+    void setTexture(sf::Texture& texture) override final;
+    void setSprite(sf::Sprite& sprite) override final;
+    void setPosition(double X, double Y) override final;
 
-    
-    sf::Texture* getSpaceShipTexture() override;
-    sf::Sprite* getSpaceShipSprite() override;
-    sf::Vector2f getSpaceShipPosition() override;
-    short* getLife() override;
-  
-
-    void centerInWindow(sf::Vector2f WindowSize) override;
-    void scaleSpaceShip(int scx, int scy) override;
     void Shoot(int PlayerScore);
-    int IterateThroughBullets(sf::RenderWindow* WINDOW, std::vector<std::unique_ptr<EnemySpaceShip>>& Enemies);
+    int IterateThroughBullets(
+        sf::RenderWindow* WINDOW,
+        std::vector<std::unique_ptr<EnemySpaceShip>>&
+            Enemies);  // Keep a vector of bullets coming from the other enemies
     void FreeUpMemoryBullets();
-
   };
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
 #  pragma endregion SPACESHIP_CLASS
 #endif

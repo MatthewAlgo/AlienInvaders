@@ -9,7 +9,7 @@
 // INCLUDE CSV PARSER
 
 #pragma region MAINCLASS_FUNC_IMPLEMENTATIONS
-void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
+void GameNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
 	sf::WindowHandle handle = ITEM_HOLDER.getA()->getSystemHandle(); // Use the handle with OS specific functions
 	// Main Window Settings
 	ITEM_HOLDER.getA()->setActive(true);
@@ -56,12 +56,12 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					&& MyMouse.get()->getPosition(*WindowPointer).y >= 150 && MyMouse.get()->getPosition(*WindowPointer).y <= 250) {
 
 					// The first (start) button is pressed -> Launch the game (animation window) and player stats window
-					if (AnimationWindow::ANIMATION_INSTANCES == 0) {
+					if (!AnimationWindow::HasInstance()) {
 						if (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Playing) {
 							BoomBox::getMainTheme()->pause();
 						}
-						MatthewsNamespace::AnimationWindow* MyMainWindow
-							= new MatthewsNamespace::AnimationWindow("AlienInvasionRetro", 1000, 700);
+						GameNamespace::AnimationWindow* MyMainWindow
+							= GameNamespace::AnimationWindow::GetInstance("AlienInvasionRetro", 1000, 700);
 						BoomBox::WindowSoundEffect();
 					}
 					else {
@@ -74,7 +74,7 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 					&& MyMouse.get()->getPosition(*WindowPointer).y >= 280 && MyMouse.get()->getPosition(*WindowPointer).y <= 380) {
 					// Open The BoomBoxWindow
 					if (BoomBox::BOOMBOX_INSTANCES == 0) {
-						MatthewsNamespace::BoomBox* MyBoomBox = new MatthewsNamespace::BoomBox("BoomBox - Retro", 500, 500);
+						GameNamespace::BoomBox* MyBoomBox = new GameNamespace::BoomBox("BoomBox - Retro", 500, 500);
 						BoomBox::WindowSoundEffect();
 					}
 					else {
@@ -87,13 +87,16 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 			else if (Event->type == sf::Event::KeyPressed) {
 				if (Event->key.code == sf::Keyboard::Escape) { // Exits on ESC pressed
 					BoomBox::IS_MUSIC_ENABLED = false; // Disable music
+					
 					BoomBox::LocalDJ->SOUND_MAIN.stop();
-					BoomBox::LocalDJ->MainThemeSound.stop();
+					BoomBox::LocalDJ->MainThemeSound.stop(); // Stop the main theme sound
+
 					sf::sleep(sf::Time(sf::seconds(1))); // Sleep for 1s
 					delete this->ParticleGenerator.get(); // Delete the random particles generator
 					ITEM_HOLDER.getA()->close(); // Deletes the animation window
+					
 					ImGui::SFML::Shutdown(*ITEM_HOLDER.getA());
-					// ImGui::DestroyContext();
+
 					exit(EXIT_SUCCESS);
 				}
 			}
@@ -106,11 +109,11 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 		
 		// Check For BoomBox Status
 		if ((BoomBox::IS_MUSIC_ENABLED == 1) && ((BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Paused)
-			|| (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) && (AnimationWindow::ANIMATION_INSTANCES == 0)){
+			|| (BoomBox::getMainTheme()->getStatus() == sf::SoundSource::Status::Stopped)) && (!AnimationWindow::HasInstance())){
 				BoomBox::StartMainThemeSong();
 		}
 		else {
-			if (AnimationWindow::ANIMATION_INSTANCES == 1) {
+			if (AnimationWindow::HasInstance()) {
 				BoomBox::getMainTheme()->stop();
 			}
 		}
@@ -119,12 +122,12 @@ void MatthewsNamespace::MainWindowClass::MainWindowThreadExecution(TripleItemHol
 
 		// ImGUIRenderer::IMGUI_Mutex.lock(); // We lock the mutex for Imgui
 		MainWindowClass* MyWindowVirt = dynamic_cast<MainWindowClass*>(ITEM_HOLDER.getC()); // Polymorphic conversion
-		MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), MyWindowVirt);
+		GameNamespace::MainWindowClass::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), MyWindowVirt);
 		MyWindowVirt = NULL; delete MyWindowVirt;
 		// ImGUIRenderer::IMGUI_Mutex.unlock(); // We unlock the mutex for Imgui
 	}
 }
-void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::MainWindowClass* C) {
+void GameNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, GameNamespace::MainWindowClass* C) {
 	WINDOW->clear(sf::Color::Red);
 	WINDOW->draw(BackGround->SPRITE);
 
@@ -151,7 +154,7 @@ void MatthewsNamespace::MainWindowClass::DrawInsideMainWindow(sf::RenderWindow* 
 	ImGUIRenderer::IMGUI_Mutex.unlock();
 	WINDOW->display();
 }
-void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
+void GameNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
 	// Inside a separate thread -> Background
 	BackGround = std::make_unique<ImageToBeDrawn>();
 	BackGround->TEXTURE.loadFromFile("GameAddicted.jpg");
@@ -198,7 +201,7 @@ void MatthewsNamespace::MainWindowClass::RenderTextures(DoubleItemHolder<sf::Ren
 
 
 }
-void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName){
+void GameNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName){
 	PlayerInfoList.clear(); // Clear the vector
 	// Load the scores from the file
 	std::ifstream ScoresFile(FileName);
@@ -225,7 +228,7 @@ void MatthewsNamespace::MainWindowClass::ScoresLoaderLocal(std::string FileName)
 	}
 }
 
-std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::string FileName) {
+std::vector<std::string> GameNamespace::MainWindowClass::RawFileReader(std::string FileName) {
 	std::vector<std::string> FileLines;
 	std::ifstream File(FileName);
 	if (File.is_open()) {
@@ -240,14 +243,14 @@ std::vector<std::string> MatthewsNamespace::MainWindowClass::RawFileReader(std::
 	return FileLines;
 }
 
-void MatthewsNamespace::MainWindowClass::sortScoresVector(std::vector<MatthewsNamespace::MainWindowClass::PlayerInfo>& ScoresVector) {
+void GameNamespace::MainWindowClass::sortScoresVector(std::vector<GameNamespace::MainWindowClass::PlayerInfo>& ScoresVector) {
 	// Sort the vector
-	std::sort(ScoresVector.begin(), ScoresVector.end(), [](const MatthewsNamespace::MainWindowClass::PlayerInfo& a, const MatthewsNamespace::MainWindowClass::PlayerInfo& b) {
+	std::sort(ScoresVector.begin(), ScoresVector.end(), [](const GameNamespace::MainWindowClass::PlayerInfo& a, const GameNamespace::MainWindowClass::PlayerInfo& b) {
 		return a.PlayerNameAndScore.second > b.PlayerNameAndScore.second;
 	});
 }
 
-void MatthewsNamespace::MainWindowClass::scoresSaverLocal(std::string FileName){
+void GameNamespace::MainWindowClass::scoresSaverLocal(std::string FileName){
 	// Save the scores to the file
 	std::ofstream ScoresFile(FileName);
 	if (ScoresFile.is_open()) {
@@ -259,7 +262,7 @@ void MatthewsNamespace::MainWindowClass::scoresSaverLocal(std::string FileName){
 }
 
 // Get best game score from a file
-int MatthewsNamespace::MainWindowClass::getBestScoreLocal(std::string FileName) {
+int GameNamespace::MainWindowClass::getBestScoreLocal(std::string FileName) {
 	std::ifstream MyFile(FileName);
 	int BestScore;
 	MyFile >> BestScore;

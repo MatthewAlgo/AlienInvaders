@@ -1,11 +1,11 @@
 #include "alieninvadersretro/ImguiRendererForWindow.h"
 
-MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
+GameNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
   // We define constructor functions here
   SFMLWindow = T;         // The pointer now points to the window passed as parameter
   ImGui::SFML::Init(*T);  // We initialize the window using the object pointed to
   // Remove the char text from buffer 
-  strcpy(StringForInputText, "");
+  strcpy_s(StringForInputText, ""); // Free the buffer
 
   // Imgui Rounded corners
   ImGui::GetStyle().WindowRounding = 10;  // <- Set this on init or use ImGui::PushStyleVar()
@@ -59,14 +59,14 @@ MatthewsNamespace::ImGUIRenderer::ImGUIRenderer(sf::RenderWindow* T) {
   delete style;
 }
 
-void MatthewsNamespace::ImGUIRenderer::ToBeCalledAfterEventHandling(sf::Event* Ev) {
+void GameNamespace::ImGUIRenderer::ToBeCalledAfterEventHandling(sf::Event* Ev) {
   ImGui::SFML::ProcessEvent(*SFMLWindow, *Ev);
 }
-void MatthewsNamespace::ImGUIRenderer::RenderImguiContents() { 
+void GameNamespace::ImGUIRenderer::RenderImguiContents() { 
   ImGui::SFML::SetCurrentWindow(*SFMLWindow);
   ImGui::SFML::Render(*SFMLWindow); }
 
-void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
+void GameNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
     std::vector<std::string> VectorOfScores, std::string WindowName) {
 
   ImGui::SFML::SetCurrentWindow(*SFMLWindow);
@@ -90,7 +90,7 @@ void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(
   }
 }
 
-void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(std::string WindowName) {
+void GameNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(std::string WindowName) {
   ImGui::SFML::SetCurrentWindow(*SFMLWindow);
   ImGui::SFML::Update(*SFMLWindow, this->DeltaClock.restart());
   if (WindowName == "Animation Window") {
@@ -105,20 +105,20 @@ void MatthewsNamespace::ImGUIRenderer::ToBeCalledForDrawingWindowElements(std::s
 }
 
 // Getters
-sf::Clock* MatthewsNamespace::ImGUIRenderer::getDeltaClock() {  // Clock
+sf::Clock* GameNamespace::ImGUIRenderer::getDeltaClock() {  // Clock
   return &this->DeltaClock;
 }
-sf::RenderWindow* MatthewsNamespace::ImGUIRenderer::getSFMLWindow() {  // SFMLWindow
+sf::RenderWindow* GameNamespace::ImGUIRenderer::getSFMLWindow() {  // SFMLWindow
   return this->SFMLWindow;
 }
-char* MatthewsNamespace::ImGUIRenderer::getStringForInputText() {
+char* GameNamespace::ImGUIRenderer::getStringForInputText() {
   return this->StringForInputText;
 }  // StringForInputText
 
-void MatthewsNamespace::ImGUIRenderer::setStringForInputText(char* String) {
-  strcpy(this->StringForInputText, String);
+void GameNamespace::ImGUIRenderer::setStringForInputText(char* String) {
+  strcpy_s(this->StringForInputText, String);
 }
 
 // Setters
-void MatthewsNamespace::ImGUIRenderer::setDeltaClock(sf::Clock Delta) { DeltaClock = Delta; }
-void MatthewsNamespace::ImGUIRenderer::setSFMLWindow(sf::RenderWindow* T) { SFMLWindow = T; }
+void GameNamespace::ImGUIRenderer::setDeltaClock(sf::Clock Delta) { DeltaClock = Delta; }
+void GameNamespace::ImGUIRenderer::setSFMLWindow(sf::RenderWindow* T) { SFMLWindow = T; }

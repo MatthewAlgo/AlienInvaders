@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #pragma region VIRTCLASS_FUNC_IMPLEMENTATIONS
-void MatthewsNamespace::PlayerStats::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
+void GameNamespace::PlayerStats::MainWindowThreadExecution(TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
 	sf::WindowHandle handle = ITEM_HOLDER.getA()->getSystemHandle(); // Use the handle with OS specific functions
 	// Main Window Settings
 	ITEM_HOLDER.getA()->setActive(true);
@@ -42,10 +42,10 @@ void MatthewsNamespace::PlayerStats::MainWindowThreadExecution(TripleItemHolder<
 		}
 		
 		std::free(Event);
-		MatthewsNamespace::PlayerStats::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), ITEM_HOLDER.getC());
+		GameNamespace::PlayerStats::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(), ITEM_HOLDER.getC());
 	}
 }
-void MatthewsNamespace::PlayerStats::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, MatthewsNamespace::VirtualWindowClass* C) {
+void GameNamespace::PlayerStats::DrawInsideMainWindow(sf::RenderWindow* WINDOW, sf::Thread* WINTHREAD, GameNamespace::VirtualWindowClass* C) {
 	WINDOW->clear(sf::Color::Red);
 	WINDOW->draw(BackGround->SPRITE);
   
@@ -59,7 +59,7 @@ void MatthewsNamespace::PlayerStats::DrawInsideMainWindow(sf::RenderWindow* WIND
 	// WINDOW->draw(GreetingText);
 	WINDOW->display();
 }
-void MatthewsNamespace::PlayerStats::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
+void GameNamespace::PlayerStats::RenderTextures(DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
 	// Inside a separate thread -> Background
 	BackGround = std::make_unique<ImageToBeDrawn>();
 	BackGround->TEXTURE.loadFromFile("BigSurWallpaper.png");

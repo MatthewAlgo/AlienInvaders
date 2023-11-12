@@ -2,77 +2,77 @@
 #include "alieninvadersretro/BoomBox.h"
 #include "alieninvadersretro/SpaceShip.h"
 
-namespace MatthewsNamespace {
-  void MatthewsNamespace::SpaceShip::Shoot(int PlayerScore) {
+namespace GameNamespace {
+  void GameNamespace::SpaceShip::Shoot(int PlayerScore) {
     // Load the bullet -> The bullet receives some speed of +10 per frame
     // The initial bullet / shuttle
     std::shared_ptr<SpaceShipBullet> CurrentBullet = std::make_shared<SpaceShipBullet>();
     if (PlayerScore < 50'000) {
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 13, POS.y - 40);  // Front Bullet
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x + 13, POS.y - 40);  // Front Bullet
     } else if (PlayerScore >= 50'000 && PlayerScore < 100'000) {
       // Side bullets upgrade
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x, POS.y - 40);
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x, POS.y - 40);
 
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 26, POS.y - 40);
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x + 26, POS.y - 40);
     } else {
       // Triple shot
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x, POS.y - 40);
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x, POS.y - 40);
 
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 26, POS.y - 40);
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x + 26, POS.y - 40);
 
       BulletDeque.push_back(std::make_shared<SpaceShipBullet>(*CurrentBullet));
       BulletDeque.back()->setTexture("NeonVertical.png");
-      BulletDeque.back()->scaleSpaceShipBullet(0.25, 0.25);
-      BulletDeque.back()->setSpaceShipBulletPosition(POS.x + 13, POS.y - 40);  // Front Bullet
+      BulletDeque.back()->scaleEntity(0.25, 0.25);
+      BulletDeque.back()->setPosition(POS.x + 13, POS.y - 40);  // Front Bullet
     }
   }
 
-  int MatthewsNamespace::SpaceShip::IterateThroughBullets(sf::RenderWindow* WINDOW,
+  int GameNamespace::SpaceShip::IterateThroughBullets(sf::RenderWindow* WINDOW,
                                                           std::vector<std::unique_ptr<EnemySpaceShip>>& Enemies) {
     int scoreByPlayer = 0;
     for (int i{}; i < this->BulletDeque.size(); ++i) {
-      WINDOW->draw(*this->BulletDeque[i]->getSpaceShipBulletSprite());
+      WINDOW->draw(*this->BulletDeque[i]->getSprite());
       if (this->BulletDeque.at(i) != nullptr) {
-        this->BulletDeque[i]->setSpaceShipBulletPosition(
-            this->BulletDeque[i]->getSpaceShipBulletPosition().x,
-            this->BulletDeque[i]->getSpaceShipBulletPosition().y - 45);
+        this->BulletDeque[i]->setPosition(
+            this->BulletDeque[i]->getPosition().x,
+            this->BulletDeque[i]->getPosition().y - 45);
       }
     }
     // Check if the bullets hit enemy spaceships
     for (int i{}; i < BulletDeque.size(); ++i) {
       // Iterate through enemies and their positions
       for (int j{}; j < Enemies.size(); ++j) {
-        if (BulletDeque.at(i)->getSpaceShipBulletPosition().x
-                > Enemies.at(j)->getSpaceShipPosition().x - 40
-            && BulletDeque.at(i)->getSpaceShipBulletPosition().x
-                   < Enemies.at(j)->getSpaceShipPosition().x + 20)
-          if (BulletDeque.at(i)->getSpaceShipBulletPosition().y
-                  > Enemies.at(j)->getSpaceShipPosition().y - 40
-              && BulletDeque.at(i)->getSpaceShipBulletPosition().y
-                     < Enemies.at(j)->getSpaceShipPosition().y + 20) {
+        if (BulletDeque.at(i)->getPosition().x
+                > Enemies.at(j)->getPosition().x - 40
+            && BulletDeque.at(i)->getPosition().x
+                   < Enemies.at(j)->getPosition().x + 20)
+          if (BulletDeque.at(i)->getPosition().y
+                  > Enemies.at(j)->getPosition().y - 40
+              && BulletDeque.at(i)->getPosition().y
+                     < Enemies.at(j)->getPosition().y + 20) {
             // Draw Explosion on Impact
-            ExplosionSprite.setPosition(BulletDeque.at(i)->getSpaceShipBulletPosition().x,
-                                        BulletDeque.at(i)->getSpaceShipBulletPosition().y);
+            ExplosionSprite.setPosition(BulletDeque.at(i)->getPosition().x,
+                                        BulletDeque.at(i)->getPosition().y);
             WINDOW->draw(ExplosionSprite);
             scoreByPlayer++;
             // Decrease life + set death behavior
-            (*Enemies.at(j)->getLife()) -= *BulletDeque.at(i)->getDamage();
-            if (*Enemies.at(j)->getLife() + EnemySpaceShip::LIFE_SUPPLIER == 0) {
+            Enemies.at(j)->setLife(Enemies.at(j)->getLife() - BulletDeque.at(i)->getDamage());
+            if (Enemies.at(j)->getLife() + EnemySpaceShip::LIFE_SUPPLIER == 0) {
               BoomBox::WindowCollisionEffect();  // Will generate a collision sound effect
               Enemies.at(j)->Die();
               // EnemySpaceShip* Iterator = Enemies.at(j).get();
@@ -92,9 +92,9 @@ namespace MatthewsNamespace {
     }
     return scoreByPlayer * 100;
   }
-  void MatthewsNamespace::SpaceShip::FreeUpMemoryBullets() {
+  void GameNamespace::SpaceShip::FreeUpMemoryBullets() {
     for (unsigned int i{}; i < this->BulletDeque.size(); i++) {  // Manage and free up the memory
-      if (this->BulletDeque.at(i)->getSpaceShipBulletPosition().y
+      if (this->BulletDeque.at(i)->getPosition().y
           < -300) {  // If the bullet is offscreen
         // SpaceShipBullet* it = this->BulletDeque.at(i).get();
         // delete it;
@@ -107,23 +107,10 @@ namespace MatthewsNamespace {
   // Functions initially placed inside the header file
   void SpaceShip::setTexture(sf::Texture& texture) { TextureOfEntity = texture; }
   void SpaceShip::setSprite(sf::Sprite& sprite) { SpriteOfEntity = sprite; }
-  void SpaceShip::setSpaceShipPosition(double X, double Y) { POS.x = X; POS.y = Y;
+  void SpaceShip::setPosition(double X, double Y) {
+    POS.x = X;
+    POS.y = Y;
     SpriteOfEntity.setPosition(POS.x, POS.y);
   }
-  void SpaceShip::setLife(short L)  { Life = L; }
-  void SpaceShip::setMainWindowSize(int X, int Y) {
-    WinSize.x = X;
-    WinSize.y = Y;
-  }
 
-  sf::Texture* SpaceShip::getSpaceShipTexture() { return &TextureOfEntity; }
-  sf::Sprite* SpaceShip::getSpaceShipSprite() { return &SpriteOfEntity; }
-  sf::Vector2f SpaceShip::getSpaceShipPosition() { return sf::Vector2f(POS.x, POS.y); }
-  short* SpaceShip::getLife() { return &Life; }
-
-  void SpaceShip::centerInWindow(sf::Vector2f WindowSize) {
-    POS.y = WindowSize.y / 2;
-    POS.x = WindowSize.x / 2;
-  }
-  void SpaceShip::scaleSpaceShip(int scx, int scy) { SpriteOfEntity.setScale(scx, scy); }
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace

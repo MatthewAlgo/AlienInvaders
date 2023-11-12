@@ -1,16 +1,16 @@
 #include "alieninvadersretro/BoomBox.h"
 
 // Static variable compilation
-bool MatthewsNamespace::BoomBox::IS_SOUND_ENABLED = 1;
-bool MatthewsNamespace::BoomBox::IS_MUSIC_ENABLED = 1;
-int MatthewsNamespace::BoomBox::BOOMBOX_INSTANCES = 0;
+bool GameNamespace::BoomBox::IS_SOUND_ENABLED = 1;
+bool GameNamespace::BoomBox::IS_MUSIC_ENABLED = 1;
+int GameNamespace::BoomBox::BOOMBOX_INSTANCES = 0;
 
-namespace MatthewsNamespace {
-  std::unique_ptr<MatthewsNamespace::BoomBox::DJ> MatthewsNamespace::BoomBox::LocalDJ
+namespace GameNamespace {
+  std::unique_ptr<GameNamespace::BoomBox::DJ> GameNamespace::BoomBox::LocalDJ
       = std::make_unique<DJ>();
-  std::vector<std::string> MatthewsNamespace::BoomBox::WavFilesFromDirectory;
+  std::vector<std::string> GameNamespace::BoomBox::WavFilesFromDirectory;
 
-  void MatthewsNamespace::BoomBox::MainWindowThreadExecution(
+  void GameNamespace::BoomBox::MainWindowThreadExecution(
       TripleItemHolder<sf::RenderWindow, sf::Thread, VirtualWindowClass>& ITEM_HOLDER) {
     sf::WindowHandle handle
         = ITEM_HOLDER.getA()->getSystemHandle();  // Use the handle with OS specific functions
@@ -44,10 +44,10 @@ namespace MatthewsNamespace {
             if (MyMouse.get()->getPosition(*WindowPointer).y >= 350
                 && MyMouse.get()->getPosition(*WindowPointer).y <= 450) {
               // Bottom button
-              if (MatthewsNamespace::BoomBox::IS_SOUND_ENABLED) {
-                MatthewsNamespace::BoomBox::IS_SOUND_ENABLED = false;
+              if (GameNamespace::BoomBox::IS_SOUND_ENABLED) {
+                GameNamespace::BoomBox::IS_SOUND_ENABLED = false;
               } else {
-                MatthewsNamespace::BoomBox::IS_SOUND_ENABLED = 1;
+                GameNamespace::BoomBox::IS_SOUND_ENABLED = 1;
               }
             }
           if (MyMouse.get()->getPosition(*WindowPointer).x >= 100
@@ -55,8 +55,8 @@ namespace MatthewsNamespace {
             if (MyMouse.get()->getPosition(*WindowPointer).y >= 20
                 && MyMouse.get()->getPosition(*WindowPointer).y <= 120) {
               // Upper button
-              if (MatthewsNamespace::BoomBox::IS_MUSIC_ENABLED) {
-                MatthewsNamespace::BoomBox::IS_MUSIC_ENABLED = false;
+              if (GameNamespace::BoomBox::IS_MUSIC_ENABLED) {
+                GameNamespace::BoomBox::IS_MUSIC_ENABLED = false;
                 // Stop the BoomBox for AnimationWinow
                 if (BoomBox::LocalDJ->SOUND_MAIN.getStatus() == sf::SoundSource::Status::Playing) {
                   BoomBox::LocalDJ->SOUND_MAIN.stop();
@@ -69,7 +69,7 @@ namespace MatthewsNamespace {
                   BoomBox::LocalDJ->MainThemeSound.resetBuffer();
                 }
               } else {
-                MatthewsNamespace::BoomBox::IS_MUSIC_ENABLED = 1;
+                GameNamespace::BoomBox::IS_MUSIC_ENABLED = 1;
               }
             }
         } else if (Event->type == sf::Event::KeyPressed) {
@@ -84,11 +84,11 @@ namespace MatthewsNamespace {
         }
       }
       std::free(Event);
-      MatthewsNamespace::BoomBox::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
+      GameNamespace::BoomBox::DrawInsideMainWindow(ITEM_HOLDER.getA(), ITEM_HOLDER.getB(),
                                                        ITEM_HOLDER.getC());
     }
   }
-  void MatthewsNamespace::BoomBox::DrawInsideMainWindow(sf::RenderWindow* WINDOW,
+  void GameNamespace::BoomBox::DrawInsideMainWindow(sf::RenderWindow* WINDOW,
                                                         sf::Thread* WINTHREAD,
                                                         VirtualWindowClass* C) {
     WINDOW->clear(sf::Color::Red);
@@ -103,7 +103,7 @@ namespace MatthewsNamespace {
     RenderLinesInCurrentFrame(WINDOW, 1);
     WINDOW->display();
   }
-  void MatthewsNamespace::BoomBox::RenderTextures(
+  void GameNamespace::BoomBox::RenderTextures(
       DoubleItemHolder<sf::RenderWindow, VirtualWindowClass> ITEM_HOLDER) {
     // Inside a separate thread -> Background
     BackGround = std::make_unique<ImageToBeDrawn>();
@@ -325,4 +325,4 @@ namespace MatthewsNamespace {
       }
     }
   }
-}  // namespace MatthewsNamespace
+}  // namespace GameNamespace
